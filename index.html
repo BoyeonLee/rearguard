@@ -1,231 +1,826 @@
-<!DOCTYPE html>
-<html lang="ko">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <!-- 브라우저 탭에 보이는 제목 -->
-  <title>[제품 이름] | 나만의 피지컬 AI</title>
-  <meta name="description" content="[제품 한 줄 소개]">
+<!DOCTYPE html><html class="dark" lang="ko" style=""><head><meta charset="utf-8"><meta content="width=device-width, initial-scale=1.0" name="viewport"><meta content="web_standard" name="shell-type"><title>RearGuard - Edge AI Bike Rear ADAS</title><link href="https://fonts.googleapis.com" rel="preconnect"><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet"><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"><style>@layer base{html,body{margin:0;padding:0;background-color:#0f131c;}html{scroll-behavior:smooth;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={"darkMode":"class","theme":{"extend":{"colors":{"primary-fixed":"#acedff","on-primary-fixed-variant":"#004e5c","primary":"#4cd7f6","primary-container":"#06b6d4","primary-fixed-dim":"#4cd7f6","tertiary-fixed":"#ffdad7","on-primary-container":"#00424f","on-secondary-fixed":"#2a1700","inverse-surface":"#dfe2ee","on-tertiary":"#68000a","secondary":"#ffb95f","surface-dim":"#0f131c","on-tertiary-container":"#7e000f","secondary-fixed":"#ffddb8","surface-tint":"#4cd7f6","inverse-on-surface":"#2c3039","on-surface":"#dfe2ee","on-error-container":"#ffdad6","surface-container-lowest":"#0a0e16","on-surface-variant":"#bcc9cd","secondary-container":"#ee9800","on-background":"#dfe2ee","tertiary":"#ffb3ad","tertiary-fixed-dim":"#ffb3ad","inverse-primary":"#00687a","surface-container-highest":"#31353e","surface-container":"#1c2028","on-primary-fixed":"#001f26","on-error":"#690005","surface-variant":"#31353e","surface":"#0f131c","surface-bright":"#353942","on-secondary":"#472a00","surface-container-high":"#262a33","on-primary":"#003640","outline-variant":"#3d494c","on-tertiary-fixed":"#410004","error":"#ffb4ab","tertiary-container":"#ff817a","surface-container-low":"#181c24","error-container":"#93000a","on-secondary-container":"#5b3800","on-tertiary-fixed-variant":"#930013","secondary-fixed-dim":"#ffb95f","on-secondary-fixed-variant":"#653e00","outline":"#869397","background":"#0f131c"},"borderRadius":{"DEFAULT":"0.125rem","lg":"0.25rem","xl":"0.5rem","full":"0.75rem"},"spacing":{"gutter-sm":"1rem","margin-md":"3rem","space-xl":"2.5rem","margin-lg":"5rem","gutter-lg":"2rem","space-lg":"1.5rem","gutter":"1.5rem","space-xs":"0.25rem","space-md":"1rem","space-sm":"0.5rem","margin":"1.5rem"},"fontFamily":{"headline-lg-mobile":["Inter"],"headline-md":["Inter"],"body-sm":["Inter"],"headline-lg":["Inter"],"headline-sm":["Inter"],"label-code-md":["JetBrains Mono"],"display":["Inter"],"label-code-lg":["JetBrains Mono"],"body-md":["Inter"],"body-lg":["Inter"],"label-code-sm":["JetBrains Mono"],"display-mobile":["Inter"]},"fontSize":{"headline-lg-mobile":["1.75rem",{"lineHeight":"1.25","letterSpacing":"-0.02em","fontWeight":"600"}],"headline-md":["1.75rem",{"lineHeight":"1.3","letterSpacing":"-0.02em","fontWeight":"600"}],"body-sm":["0.8125rem",{"lineHeight":"1.5","letterSpacing":"0","fontWeight":"400"}],"headline-lg":["2.5rem",{"lineHeight":"1.2","letterSpacing":"-0.025em","fontWeight":"600"}],"headline-sm":["1.25rem",{"lineHeight":"1.4","letterSpacing":"-0.015em","fontWeight":"600"}],"label-code-md":["0.8125rem",{"lineHeight":"1.4","letterSpacing":"0","fontWeight":"500"}],"display":["3.75rem",{"lineHeight":"1.1","letterSpacing":"-0.03em","fontWeight":"700"}],"label-code-lg":["1rem",{"lineHeight":"1.5","letterSpacing":"-0.01em","fontWeight":"500"}],"body-md":["0.9375rem",{"lineHeight":"1.6","letterSpacing":"-0.005em","fontWeight":"400"}],"body-lg":["1.125rem",{"lineHeight":"1.6","letterSpacing":"-0.01em","fontWeight":"400"}],"label-code-sm":["0.6875rem",{"lineHeight":"1.4","letterSpacing":"0.04em","fontWeight":"500"}],"display-mobile":["2.25rem",{"lineHeight":"1.2","letterSpacing":"-0.02em","fontWeight":"700"}]}}}};</script></head><body class="bg-surface font-body-md text-on-surface antialiased selection:bg-primary-container selection:text-on-primary-container"><header class="fixed top-0 left-0 right-0 z-50 bg-surface-container-lowest/85 backdrop-blur-md border-b border-outline-variant/30 shadow-[0_1px_8px_rgba(0,0,0,0.4)]"><div class="h-16 w-full px-gutter-sm md:px-gutter lg:px-gutter-lg flex items-center justify-between gap-space-md"><div class="flex items-center gap-space-md shrink-0"><a class="flex items-center gap-space-sm" data-path="overview" href="#"><img alt="RearGuard Logo" class="h-8 w-auto object-contain" src="images/logo.png"><span class="font-headline-sm text-headline-sm tracking-tight text-on-surface font-semibold hidden sm:inline-block">RearGuard</span></a><div class="hidden sm:flex items-center gap-space-xs px-space-xs py-0.5 rounded-lg bg-surface-container border border-outline-variant/40 text-primary font-label-code-sm text-label-code-sm"><span class="w-1.5 h-1.5 rounded-full bg-primary animate-pulse"></span><span class="">ADAS v1.0.4-rc</span></div></div><nav class="hidden xl:flex items-center gap-space-lg" data-active-classes="text-primary font-semibold"><a class="font-body-md text-body-md text-on-surface-variant hover:text-on-surface transition-colors" data-path="products" href="#product">제품</a><a class="font-body-md text-body-md text-on-surface-variant hover:text-on-surface transition-colors" data-path="how-it-works" href="#mechanism">작동 방식</a><a class="font-body-md text-body-md text-on-surface-variant hover:text-on-surface transition-colors" data-path="architecture" href="#architecture">기술 설계</a><a class="font-body-md text-body-md text-on-surface-variant hover:text-on-surface transition-colors" data-path="validation" href="#validation">검증</a><a class="font-body-md text-body-md text-on-surface-variant hover:text-on-surface transition-colors" data-path="dev-notes" href="#devnotes">개발 노트</a></nav><div class="flex items-center gap-space-sm shrink-0"><a class="hidden md:flex items-center gap-space-xs px-space-md py-1.5 rounded-lg border border-outline-variant/60 bg-surface-container text-on-surface hover:bg-surface-container-high hover:text-primary transition-all font-label-code-sm text-label-code-sm" href="https://github.com" rel="noopener noreferrer" target="_blank"><span class="material-symbols-outlined text-[16px]">terminal</span><span class="">GitHub</span></a><a class="hidden sm:flex items-center gap-space-xs px-space-md py-1.5 rounded-lg bg-primary text-on-primary font-label-code-md text-label-code-md font-semibold shadow-[0_0_16px_rgba(6,182,212,0.3)] hover:bg-primary-fixed transition-all" href="#demo"><span class="material-symbols-outlined text-[16px]">play_circle</span><span class="">Live Demo</span></a><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div><details class="xl:hidden relative"><summary class="list-none flex items-center justify-center p-space-xs rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container cursor-pointer"><span class="material-symbols-outlined text-[24px]">menu</span></summary><div class="absolute right-0 top-12 w-64 p-space-md bg-surface-container-low border border-outline-variant/50 rounded-xl shadow-2xl flex flex-col gap-space-sm"><a class="py-space-xs px-space-sm rounded text-on-surface-variant hover:bg-surface-container hover:text-on-surface font-body-sm text-body-sm transition-colors" data-path="products" href="#product">제품</a><a class="py-space-xs px-space-sm rounded text-on-surface-variant hover:bg-surface-container hover:text-on-surface font-body-sm text-body-sm transition-colors" data-path="how-it-works" href="#mechanism">작동 방식</a><a class="py-space-xs px-space-sm rounded text-on-surface-variant hover:bg-surface-container hover:text-on-surface font-body-sm text-body-sm transition-colors" data-path="architecture" href="#architecture">기술 설계</a><a class="py-space-xs px-space-sm rounded text-on-surface-variant hover:bg-surface-container hover:text-on-surface font-body-sm text-body-sm transition-colors" data-path="validation" href="#validation">검증</a><a class="py-space-xs px-space-sm rounded text-on-surface-variant hover:bg-surface-container hover:text-on-surface font-body-sm text-body-sm transition-colors" data-path="dev-notes" href="#devnotes">개발 노트</a><div class="pt-space-xs mt-space-xs border-t border-outline-variant/30 flex flex-col gap-space-xs"><a class="flex items-center gap-space-xs py-space-xs px-space-sm text-on-surface-variant font-label-code-sm text-label-code-sm" href="https://github.com" target="_blank"><span class="material-symbols-outlined text-[16px]">terminal</span><span class="">GitHub Repo</span></a><a class="flex items-center justify-center py-space-xs px-space-sm rounded bg-primary text-on-primary font-label-code-sm text-label-code-sm font-semibold" href="#demo"><span class="">Launch Live Demo</span></a></div></div></details></div></div></header><main class="w-full pt-16 bg-surface min-h-[calc(100vh-4rem)] relative"><div class="flex flex-col w-full text-on-surface">
+<!-- PART 1: 1. HERO SECTION (#product) -->
+<section class="relative w-full py-space-xl lg:py-margin-lg bg-surface-container-lowest overflow-hidden" id="product">
+<div class="w-full px-gutter-sm md:px-gutter lg:px-gutter-lg max-w-[1440px] mx-auto">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-space-xl items-center">
+<!-- Left: Copy & Actions -->
+<div class="lg:col-span-6 flex flex-col items-start gap-space-md">
+<div class="inline-flex items-center gap-space-xs px-space-sm py-1 rounded bg-surface-container-high text-primary font-label-code-sm text-label-code-sm shadow-sm">
+<span class="w-2 h-2 rounded-full bg-primary animate-ping"></span>
+<span class="">자율주행 엣지 AI 기반 자전거 주행 안전 시스템</span>
+</div>
+<h1 class="font-display text-display text-on-surface tracking-tight">
+            뒤에서 오는 위험,<br>
+<span class="text-primary">미리 봅니다.</span>
+</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-xl">
+            스마트폰 카메라 하나로 구현한 자전거 후방 추월 경고 엣지 AI. 레이더는 <span class="text-on-surface font-semibold">‘뭔가 온다’</span>를 알려주고, RearGuard는 <span class="text-primary font-semibold">‘위험하게 온다’</span>를 알려줍니다.
+          </p>
+<div class="flex flex-wrap items-center gap-space-md pt-space-xs">
+<a class="inline-flex items-center gap-space-xs px-space-lg py-2.5 rounded bg-primary-container text-on-primary-container font-label-code-md text-label-code-md font-semibold shadow-xl hover:bg-primary transition-all" href="#demo-video">
+<span class="material-symbols-outlined text-[18px]">play_circle</span>
+<span class="">데모 영상 보기</span>
+</a>
+<a class="inline-flex items-center gap-space-xs px-space-lg py-2.5 rounded bg-surface-container-high text-on-surface font-label-code-md text-label-code-md hover:bg-surface-container-highest transition-all" href="https://github.com" rel="noopener noreferrer" target="_blank">
+<span class="material-symbols-outlined text-[18px]">terminal</span>
+<span class="">GitHub 보기</span>
+</a>
+</div>
+<!-- Quick Telemetry Specs Bar -->
+<div class="grid grid-cols-3 gap-space-md w-full pt-space-md bg-surface-container-low p-space-md rounded-xl mt-space-sm shadow-sm">
+<div class="flex flex-col">
+<span class="font-label-code-sm text-label-code-sm text-on-surface-variant">MODEL WEIGHT</span>
+<span class="font-label-code-lg text-label-code-lg text-on-surface font-semibold">3.8 MB (INT8)</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-code-sm text-label-code-sm text-on-surface-variant">INFERENCE SPEED</span>
+<span class="font-label-code-lg text-label-code-lg text-primary font-semibold">30 FPS (NPU)</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-code-sm text-label-code-sm text-on-surface-variant">SENSOR REQ</span>
+<span class="font-label-code-lg text-label-code-lg text-secondary font-semibold">Mono Camera</span>
+</div>
+</div>
+</div>
+<!-- Right: Hardware Mock with Dynamic HUD overlay -->
+<div class="lg:col-span-6 relative flex justify-center">
+<div class="relative w-full max-w-[620px] rounded-xl overflow-hidden shadow-2xl bg-surface-container-lowest">
+<!-- Rear Camera View Image -->
+<img alt="RearGuard Seatpost Vision Field of View" class="w-full h-[380px] sm:h-[430px] object-cover" src="images/hero.jpg">
+<!-- Live HUD Overlays -->
+<div class="absolute inset-0 p-space-md flex flex-col justify-between pointer-events-none bg-gradient-to-t from-surface-container-lowest/90 via-transparent to-surface-container-lowest/40">
+<!-- Top HUD Metadata -->
+<div class="flex items-center justify-between font-label-code-sm text-label-code-sm text-primary">
+<div class="flex items-center gap-space-xs bg-surface-container-lowest/80 px-space-sm py-1 rounded backdrop-blur">
+<span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+<span class="">CAM0 // 1080p@30FPS</span>
+</div>
+<div class="flex items-center gap-space-sm bg-surface-container-lowest/80 px-space-sm py-1 rounded backdrop-blur text-on-surface-variant">
+<span class="">LATENCY: <strong class="text-primary font-mono">42ms</strong></span>
+<span class="">E2E: <strong class="text-on-surface font-mono">138ms</strong></span>
+</div>
+</div>
+<!-- Center Target Bounding Box Representation -->
+<div class="relative self-center my-auto flex flex-col items-center">
+<div class="w-48 h-32 rounded bg-primary/10 relative flex flex-col justify-between p-2 shadow-[0_0_24px_rgba(6,182,212,0.25)]">
+<div class="flex items-center justify-between text-primary font-label-code-sm text-label-code-sm">
+<span class="bg-surface-container-lowest/90 px-1 py-0.5 rounded">TARGET: SEDAN [96.4%]</span>
+<span class="material-symbols-outlined text-[14px]">my_location</span>
+</div>
+<div class="bg-surface-container-lowest/90 p-1 rounded font-label-code-sm text-label-code-sm text-on-surface flex justify-between">
+<span class="">d = <span class="text-primary font-semibold">24.5m</span></span>
+<span class="">TTC = <span class="text-tertiary-container font-semibold">1.8s</span></span>
+</div>
+</div>
+<div class="mt-1 font-label-code-sm text-label-code-sm px-2 py-0.5 bg-secondary-container text-on-secondary-container rounded font-bold">
+                  WARN: CPA 1.1m (CLOSE PASS)
+                </div>
+</div>
+<!-- Bottom Status Bar -->
+<div class="flex items-center justify-between bg-surface-container-lowest/90 px-space-md py-space-xs rounded backdrop-blur text-on-surface-variant font-label-code-sm text-label-code-sm">
+<div class="flex items-center gap-space-sm">
+<span class="text-secondary font-semibold">STATE: APPROACHING</span>
+<span class="">KALMAN: TRACK #042</span>
+</div>
+<div class="flex items-center gap-space-xs text-primary">
+<span class="material-symbols-outlined text-[16px]">sensors</span>
+<span class="">BLE ADAS LINK: ACTIVE</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- PART 1: 2. 문제 정의 -->
+<section class="w-full py-space-xl lg:py-margin-lg bg-surface">
+<div class="w-full px-gutter-sm md:px-gutter lg:px-gutter-lg max-w-[1440px] mx-auto flex flex-col gap-space-xl">
+<div class="flex flex-col gap-space-xs max-w-2xl">
+<span class="font-label-code-sm text-label-code-sm text-primary tracking-wider uppercase">Problem Statement</span>
+<h2 class="font-headline-lg text-headline-lg text-on-surface">라이더의 사각지대와 기존 센서의 치명적 한계</h2>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-space-lg">
+<!-- Problem Card 1 -->
+<div class="bg-surface-container-low p-space-lg rounded-xl flex flex-col gap-space-sm shadow-md">
+<div class="w-10 h-10 rounded bg-tertiary-container/20 text-tertiary-container flex items-center justify-center">
+<span class="material-symbols-outlined text-[24px]">visibility_off</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">보이지 않는 후방 위협</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">
+            라이더는 뒤에서 접근하는 고속 차량을 직접 시각적으로 인지할 수 없으며, 2초 미만의 근접 추월 상황에서는 회피 조향을 수행할 물리적 시간이 절대적으로 부족합니다. 특히 후방 숄더 체크는 전방 주시 태만을 유발해 더 큰 전방 낙차 사고로 이어집니다.
+          </p>
+</div>
+<!-- Problem Card 2 -->
+<div class="bg-surface-container-low p-space-lg rounded-xl flex flex-col gap-space-sm shadow-md">
+<div class="w-10 h-10 rounded bg-secondary-container/20 text-secondary flex items-center justify-center">
+<span class="material-symbols-outlined text-[24px]">notifications_paused</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">경고 피로</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">
+            기존 거리 기반 초음파/밀리미터파 레이더는 도심 및 자전거 전용도로 인근 도로 주행 시 안전하게 멀리 지나가는 차에도 무차별적으로 알림을 울려 결국 라이더가 알림을 끄게 만듭니다. 반복되는 허위 경고(False Positive)는 실제 위급 시 반응성을 마비시킵니다.
+          </p>
+</div>
+</div>
+<!-- Problem Highlight Callout Banner -->
+<div class="bg-surface-container-high p-space-lg rounded-xl shadow-lg flex flex-col sm:flex-row items-center justify-between gap-space-md">
+<div class="flex items-center gap-space-md">
+<div class="w-12 h-12 shrink-0 rounded-full bg-primary/20 text-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-[28px]">crisis_alert</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-code-sm text-label-code-sm text-primary uppercase">Core Paradigm Shift</span>
+<p class="font-headline-sm text-headline-sm text-on-surface font-semibold">
+              필요한 건 ‘뒤에 차가 있다’가 아니라 <span class="text-primary">‘위험하게 지나간다’</span>는 정확한 판단입니다.
+            </p>
+</div>
+</div>
+<span class="px-space-md py-1.5 rounded bg-surface-container-lowest text-primary font-label-code-md text-label-code-md shrink-0">
+          CPA + TTC 계산
+        </span>
+</div>
+</div>
+</section>
+<!-- PART 1: 3. 기존 방식과 비교 (대조 카드) -->
+<section class="w-full py-space-xl lg:py-margin-lg bg-surface-container-lowest">
+<div class="w-full px-gutter-sm md:px-gutter lg:px-gutter-lg max-w-[1440px] mx-auto flex flex-col gap-space-xl">
+<div class="flex flex-col gap-space-xs text-center items-center">
+<span class="font-label-code-sm text-label-code-sm text-primary tracking-wider uppercase">Comparative Analysis</span>
+<h2 class="font-headline-lg text-headline-lg text-on-surface">기존 하드웨어 레이더 vs RearGuard 비전 AI</h2>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-xl">단순 스칼라 거리 측정과 2D 궤적 기반 공간 기하학의 차이를 비교하십시오.</p>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-space-lg">
+<!-- Conventional Radar -->
+<div class="bg-surface-container-low p-space-lg rounded-xl flex flex-col gap-space-md shadow-md">
+<div class="flex items-center justify-between pb-space-sm bg-surface-container-lowest p-space-sm rounded">
+<span class="font-headline-sm text-headline-sm text-on-surface-variant">기존 거리 기반 경고 (레이더/초음파)</span>
+<span class="material-symbols-outlined text-outline">radar</span>
+</div>
+<div class="space-y-space-md font-body-md text-body-md">
+<div>
+<span class="font-label-code-sm text-label-code-sm text-outline block">측정 요소</span>
+<p class="text-on-surface-variant">단순 1D 직선 거리 및 접근 속도만 스칼라값으로 측정</p>
+</div>
+<div>
+<span class="font-label-code-sm text-label-code-sm text-outline block">알림 품질</span>
+<p class="text-on-surface-variant">안전한 일반 차선 주행에도 과도한 허위 경고 발화 (경고 피로 유발)</p>
+</div>
+<div>
+<span class="font-label-code-sm text-label-code-sm text-outline block">하드웨어 요구사항</span>
+<p class="text-on-surface-variant">고가의 전용 레이더 기기 구매 필수 (15만~35만 원 상당)</p>
+</div>
+<div>
+<span class="font-label-code-sm text-label-code-sm text-outline block">환경 맥락 인지</span>
+<p class="text-on-surface-variant">차종 구분 불가, 차선 변경 궤적 및 횡방향 이격 거리(CPA) 계산 불가</p>
+</div>
+</div>
+</div>
+<!-- RearGuard Vision AI -->
+<div class="bg-surface-container-high p-space-lg rounded-xl flex flex-col gap-space-md shadow-xl relative overflow-hidden">
+<div class="flex items-center justify-between pb-space-sm bg-surface-container-lowest p-space-sm rounded">
+<div class="flex items-center gap-space-xs">
+<span class="font-headline-sm text-headline-sm text-primary font-bold">RearGuard (엣지 AI 비전)</span>
+<span class="px-2 py-0.5 rounded bg-primary-container/20 text-primary font-label-code-sm text-label-code-sm">EDGE NPU</span>
+</div>
+<span class="material-symbols-outlined text-primary">auto_awesome</span>
+</div>
+<div class="space-y-space-md font-body-md text-body-md">
+<div>
+<span class="font-label-code-sm text-label-code-sm text-primary block">측정 요소</span>
+<p class="text-on-surface">차종 정밀 분류(승용차/SUV/트럭/버스) 및 2D 평면 횡·종방향 궤적 추적</p>
+</div>
+<div>
+<span class="font-label-code-sm text-label-code-sm text-primary block">알림 품질</span>
+<p class="text-on-surface">충돌 예측 경로와 1.2m 이하의 위험한 근접 추월만 필터링하여 정밀 경고</p>
+</div>
+<div>
+<span class="font-label-code-sm text-label-code-sm text-primary block">하드웨어 요구사항</span>
+<p class="text-on-surface">라이더가 이미 보유한 스마트폰 카메라와 온디바이스 NPU 연산 능력 그대로 활용</p>
+</div>
+<div>
+<span class="font-label-code-sm text-label-code-sm text-primary block">환경 맥락 인지</span>
+<p class="text-on-surface">지면 호모그래피(Homography) 역투영을 통해 실제 횡방향 통과 간격을 cm 단위 추정</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- PART 1: 4. 3단계 경고 시스템 -->
+<section class="w-full py-space-xl lg:py-margin-lg bg-surface">
+<div class="w-full px-gutter-sm md:px-gutter lg:px-gutter-lg max-w-[1440px] mx-auto flex flex-col gap-space-xl">
+<div class="flex flex-col gap-space-xs">
+<span class="font-label-code-sm text-label-code-sm text-primary tracking-wider uppercase">Adaptive Threat Response</span>
+<h2 class="font-headline-lg text-headline-lg text-on-surface">상황별 3단계 지능형 경고 프로토콜</h2>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-2xl">
+          라이더에게는 인지 부하를 주지 않고, 후방 차량 운전자에게는 자전거의 존재를 확실하게 각인시키는 양방향 안전 피드백입니다.
+        </p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-space-lg">
+<!-- Caution: Yellow -->
+<div class="bg-surface-container-low p-space-lg rounded-xl flex flex-col justify-between gap-space-md shadow-md">
+<div class="flex flex-col gap-space-sm">
+<div class="flex items-center justify-between">
+<span class="px-space-sm py-1 rounded bg-secondary-fixed/20 text-secondary font-label-code-md text-label-code-md font-semibold">
+                주의
+              </span>
+<span class="material-symbols-outlined text-secondary">info</span>
+</div>
+<div class="font-label-code-sm text-label-code-sm text-on-surface-variant pt-space-xs">
+              조건: 횡방향 간격 &gt; 1.5m (안전 추월)
+            </div>
+<div class="space-y-space-sm pt-space-sm font-body-sm text-body-sm">
+<div class="bg-surface-container-lowest p-space-sm rounded">
+<span class="font-semibold text-secondary block font-label-code-sm text-label-code-sm">라이더 피드백</span>
+<span class="text-on-surface-variant">핸들바 유닛 소형 LED 옐로우 점등 (소리 없음)</span>
+</div>
+<div class="bg-surface-container-lowest p-space-sm rounded">
+<span class="font-semibold text-secondary block font-label-code-sm text-label-code-sm">후방 반응</span>
+<span class="text-on-surface-variant">기본 후미등 주행 모드 유지</span>
+</div>
+</div>
+</div>
+<div class="font-label-code-sm text-label-code-sm text-on-surface-variant text-right">TTC &gt; 3.0s</div>
+</div>
+<!-- Warning: Orange -->
+<div class="bg-surface-container-low p-space-lg rounded-xl flex flex-col justify-between gap-space-md shadow-md">
+<div class="flex flex-col gap-space-sm">
+<div class="flex items-center justify-between">
+<span class="px-space-sm py-1 rounded bg-secondary-container/20 text-secondary-container font-label-code-md text-label-code-md font-semibold">
+                경고
+              </span>
+<span class="material-symbols-outlined text-secondary-container">warning</span>
+</div>
+<div class="font-label-code-sm text-label-code-sm text-on-surface-variant pt-space-xs">
+              조건: 간격 &lt; 1.2m 또는 급차선 변경
+            </div>
+<div class="space-y-space-sm pt-space-sm font-body-sm text-body-sm">
+<div class="bg-surface-container-lowest p-space-sm rounded">
+<span class="font-semibold text-secondary-container block font-label-code-sm text-label-code-sm">라이더 피드백</span>
+<span class="text-on-surface-variant">핸들 LED 주황 점멸 + 1회 햅틱 진동 및 톤 사운드</span>
+</div>
+<div class="bg-surface-container-lowest p-space-sm rounded">
+<span class="font-semibold text-secondary-container block font-label-code-sm text-label-code-sm">후방 반응</span>
+<span class="text-on-surface-variant">후방 고휘도 LED 4Hz 빠른 점멸로 차량 감속 유도</span>
+</div>
+</div>
+</div>
+<div class="font-label-code-sm text-label-code-sm text-on-surface-variant text-right">TTC 1.5s ~ 2.5s</div>
+</div>
+<!-- Danger: Red -->
+<div class="bg-surface-container-high p-space-lg rounded-xl flex flex-col justify-between gap-space-md shadow-xl">
+<div class="flex flex-col gap-space-sm">
+<div class="flex items-center justify-between">
+<span class="px-space-sm py-1 rounded bg-error-container/40 text-tertiary font-label-code-md text-label-code-md font-semibold">
+                위험
+              </span>
+<span class="material-symbols-outlined text-tertiary">emergency_home</span>
+</div>
+<div class="font-label-code-sm text-label-code-sm text-tertiary pt-space-xs font-semibold">
+              조건: 충돌 궤적 (TTC &lt; 1.5s, 간격 &lt; 0.8m)
+            </div>
+<div class="space-y-space-sm pt-space-sm font-body-sm text-body-sm">
+<div class="bg-surface-container-lowest p-space-sm rounded">
+<span class="font-semibold text-tertiary block font-label-code-sm text-label-code-sm">라이더 피드백</span>
+<span class="text-on-surface">연속 고음 비프 경고음 + 강한 진동 즉각 회피 경보</span>
+</div>
+<div class="bg-surface-container-lowest p-space-sm rounded">
+<span class="font-semibold text-tertiary block font-label-code-sm text-label-code-sm">후방 반응</span>
+<span class="text-on-surface">스트로브 LED 최대 광량(350lm) 초고속 발광 추돌 방지</span>
+</div>
+</div>
+</div>
+<div class="font-label-code-sm text-label-code-sm text-tertiary text-right font-bold">IMMINENT COLLISION</div>
+</div>
+</div>
+</div>
+</section>
+<!-- PART 1: 5. 구성과 장착 -->
+<section class="w-full py-space-xl lg:py-margin-lg bg-surface-container-lowest">
+<div class="w-full px-gutter-sm md:px-gutter lg:px-gutter-lg max-w-[1440px] mx-auto flex flex-col gap-space-xl">
+<div class="flex flex-col gap-space-xs text-center items-center">
+<span class="font-label-code-sm text-label-code-sm text-primary tracking-wider uppercase">Hardware &amp; Mounting</span>
+<h2 class="font-headline-lg text-headline-lg text-on-surface">짐받이 없이, 대부분의 자전거에 1분이면 장착</h2>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-xl">
+          표준 시트포스트와 핸들바 직경 규격을 완벽 지원하여 로드바이크, 그래블, MTB 등 모든 차종에 도구 없이 결착됩니다.
+        </p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-space-lg">
+<!-- Hardware Pack 1: Seatpost -->
+<div class="bg-surface-container-low p-space-lg rounded-xl flex flex-col justify-between gap-space-md shadow-md">
+<div class="flex flex-col gap-space-sm">
+<div class="w-12 h-12 rounded bg-surface-container-high text-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-[28px]">phone_android</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">스마트폰·후방 LED 일체형 시트포스트 마운트</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">
+              공구 없이 27.2~31.6mm 시트포스트에 퀵 릴리즈 클램프로 견고하게 장착됩니다. 주행 진동을 흡수하는 실리콘 댐퍼가 적용되어 고속 다운힐에서도 카메라 광학 흔들림을 원천 차단합니다.
+            </p>
+</div>
+<div class="pt-space-sm flex items-center gap-space-md font-label-code-sm text-label-code-sm text-on-surface-variant">
+<span class="">규격: 27.2~31.6mm</span>
+<span class="">중량: 68g</span>
+<span class="">소재: 항공기급 AL6061</span>
+</div>
+</div>
+<!-- Hardware Pack 2: Handlebar Unit -->
+<div class="bg-surface-container-low p-space-lg rounded-xl flex flex-col justify-between gap-space-md shadow-md">
+<div class="flex flex-col gap-space-sm">
+<div class="w-12 h-12 rounded bg-surface-container-high text-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-[28px]">notifications_active</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">핸들 알림 유닛</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">
+              직경 22.2~31.8mm 핸들바 호환 마운트. 초경량 코인 배터리 기반 저전력 BLE 통신으로 30시간 이상 연속 작동합니다. 주간에도 직관적으로 식별 가능한 고휘도 RGB 인디케이터와 85dB 피에조 부저를 내장했습니다.
+            </p>
+</div>
+<div class="pt-space-sm flex items-center gap-space-md font-label-code-sm text-label-code-sm text-on-surface-variant">
+<span class="">지연시간: &lt; 20ms</span>
+<span class="">방수등급: IPX6</span>
+<span class="">배터리: CR2032 (30h+)</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- PART 2: 6. 시스템 아키텍처 블록 다이어그램 (#architecture) -->
+<section class="w-full py-space-xl lg:py-margin-lg bg-surface" id="architecture">
+<div class="w-full px-gutter-sm md:px-gutter lg:px-gutter-lg max-w-[1440px] mx-auto flex flex-col gap-space-xl">
+<div class="flex flex-col gap-space-xs">
+<span class="font-label-code-sm text-label-code-sm text-primary tracking-wider uppercase">System Architecture</span>
+<h2 class="font-headline-lg text-headline-lg text-on-surface">실시간 엣지 파이프라인 아키텍처</h2>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-2xl">
+          카메라 프레임 캡처부터 NPU 추론, 기하학 궤적 계산 및 BLE 브로드캐스팅까지 결정론적 저지연 파이프라인을 구축했습니다.
+        </p>
+</div>
+<!-- Architecture Pipeline Diagram -->
+<div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-xl flex flex-col gap-space-lg">
+<div class="grid grid-cols-1 md:grid-cols-5 gap-space-md items-center">
+<!-- Node 1 -->
+<div class="bg-surface-container-high p-space-md rounded flex flex-col gap-space-xs shadow">
+<span class="font-label-code-sm text-label-code-sm text-primary">STAGE 01 // SENSOR</span>
+<div class="font-headline-sm text-headline-sm text-on-surface font-semibold">스마트폰 카메라</div>
+<span class="font-label-code-sm text-label-code-sm text-on-surface-variant">1080p@30FPS (NV21 / YUV420)</span>
+<div class="mt-2 text-xs bg-surface-container px-2 py-1 rounded font-mono text-outline">Camera2 Zero-Copy</div>
+</div>
+<div class="hidden md:flex justify-center text-primary">
+<span class="material-symbols-outlined text-[24px]">trending_flat</span>
+</div>
+<!-- Node 2 -->
+<div class="bg-surface-container-high p-space-md rounded flex flex-col gap-space-xs shadow">
+<span class="font-label-code-sm text-label-code-sm text-primary">STAGE 02 // EDGE INFERENCE</span>
+<div class="font-headline-sm text-headline-sm text-on-surface font-semibold">YOLOX-Nano + Tracker</div>
+<span class="font-label-code-sm text-label-code-sm text-on-surface-variant">TFLite INT8 / Kalman Filter</span>
+<div class="mt-2 text-xs bg-surface-container px-2 py-1 rounded font-mono text-primary">Latency: ~28ms (NPU)</div>
+</div>
+<div class="hidden md:flex justify-center text-primary">
+<span class="material-symbols-outlined text-[24px]">trending_flat</span>
+</div>
+<!-- Node 3 -->
+<div class="bg-surface-container-high p-space-md rounded flex flex-col gap-space-xs shadow">
+<span class="font-label-code-sm text-label-code-sm text-primary">STAGE 03 // TRAJECTORY</span>
+<div class="font-headline-sm text-headline-sm text-on-surface font-semibold">호모그래피 &amp; CPA 계산</div>
+<span class="font-label-code-sm text-label-code-sm text-on-surface-variant">지면 투영 + 2차 칼만 외삽</span>
+<div class="mt-2 text-xs bg-surface-container px-2 py-1 rounded font-mono text-secondary">TTC &amp; Clearance</div>
+</div>
+</div>
+<div class="flex justify-center text-primary py-space-xs">
+<span class="material-symbols-outlined text-[24px]">south</span>
+</div>
+<!-- Node 4 & Actuators -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-space-md items-center">
+<div class="bg-surface-container-high p-space-md rounded flex flex-col gap-space-xs shadow">
+<span class="font-label-code-sm text-label-code-sm text-primary">STAGE 04 // DECISION ENGINE</span>
+<div class="font-headline-sm text-headline-sm text-on-surface font-semibold">규칙 기반 히스테리시스</div>
+<span class="font-label-code-sm text-label-code-sm text-on-surface-variant">상태 전이 300ms 디바운스 필터</span>
+<div class="mt-2 text-xs bg-surface-container px-2 py-1 rounded font-mono text-on-surface">1-Byte Custom BLE Payload</div>
+</div>
+<div class="flex justify-center text-primary">
+<span class="material-symbols-outlined text-[24px]">fork_right</span>
+</div>
+<div class="flex flex-col gap-space-sm">
+<!-- Actuator A -->
+<div class="bg-surface-container p-space-sm rounded flex items-center justify-between">
+<div>
+<span class="font-label-code-sm text-label-code-sm text-primary block">ESP32-C3 후방 유닛</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">WS2812B LED 스트로브 발광</span>
+</div>
+<span class="material-symbols-outlined text-secondary">light_mode</span>
+</div>
+<!-- Actuator B -->
+<div class="bg-surface-container p-space-sm rounded flex items-center justify-between">
+<div>
+<span class="font-label-code-sm text-label-code-sm text-primary block">핸들바 알림 노드</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">부저 경고음 + 햅틱 진동 피드백</span>
+</div>
+<span class="material-symbols-outlined text-primary">vibration</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- PART 2: 7. 핵심 기능별 기술 (4개 기술 심층 카드) -->
+<section class="w-full py-space-xl lg:py-margin-lg bg-surface-container-lowest">
+<div class="w-full px-gutter-sm md:px-gutter lg:px-gutter-lg max-w-[1440px] mx-auto flex flex-col gap-space-xl">
+<div class="flex flex-col gap-space-xs">
+<span class="font-label-code-sm text-label-code-sm text-primary tracking-wider uppercase">Engineering Deep-Dive</span>
+<h2 class="font-headline-lg text-headline-lg text-on-surface">핵심 서브시스템별 기술 접근 방식</h2>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-space-lg">
+<!-- F1 -->
+<div class="bg-surface-container-low p-space-lg rounded-xl flex flex-col gap-space-md shadow-md">
+<div class="flex items-center gap-space-sm">
+<span class="px-2 py-0.5 rounded bg-primary-container text-on-primary-container font-label-code-sm text-label-code-sm font-semibold">F1</span>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">차량 인식 및 연속 추적 파이프라인</h3>
+</div>
+<div class="space-y-space-sm font-body-md text-body-md">
+<div>
+<span class="font-label-code-sm text-label-code-sm text-on-surface-variant block font-semibold">무엇을</span>
+<p class="text-on-surface-variant">저전력 모바일 환경에서 30FPS 이상의 실시간 다중 차량 객체 검출 및 프레임 간 ID 영속성을 보장해야 합니다.</p>
+</div>
+<div>
+<span class="font-label-code-sm text-label-code-sm text-primary block font-semibold">어떻게</span>
+<p class="text-on-surface">
+                경량 YOLOX-Nano 백본을 기반으로 TensorFlow Lite INT8 양자화를 적용해 정확도 손실 1.2% 이내로 모델 크기를 3.8MB로 압축했습니다. ByteTrack 기반 칼만 필터 및 IoU 헝가리안 매칭을 통해 가림(Occlusion)이나 도로 노면 진동 중에도 차량 ID가 끊기지 않도록 설계했습니다.
+              </p>
+</div>
+</div>
+</div>
+<!-- F2 -->
+<div class="bg-surface-container-low p-space-lg rounded-xl flex flex-col gap-space-md shadow-md">
+<div class="flex items-center gap-space-sm">
+<span class="px-2 py-0.5 rounded bg-primary-container text-on-primary-container font-label-code-sm text-label-code-sm font-semibold">F2</span>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">위험 추월 기하학 예측 (CPA &amp; TTC)</h3>
+</div>
+<div class="space-y-space-sm font-body-md text-body-md">
+<div>
+<span class="font-label-code-sm text-label-code-sm text-on-surface-variant block font-semibold">무엇을</span>
+<p class="text-on-surface-variant">단안(Monocular) 카메라의 원근 깊이 한계를 극복하고 차량의 횡방향 여유 통과 간격(CPA)을 정확히 산출해야 합니다.</p>
+</div>
+<div>
+<span class="font-label-code-sm text-label-code-sm text-primary block font-semibold">어떻게</span>
+<p class="text-on-surface">
+                카메라 광축과 노면 사이의 3x3 평면 호모그래피(Inverse Perspective Mapping) 변환 행렬을 구축하고, 타이어 접지점 바닥 좌표를 실시간 역투영합니다. 2차 등가속도 칼만 필터 기반 궤적 외삽을 통해 최근접 통과 거리(CPA)와 충돌 시간(TTC)을 오차 0.2m 이내로 도출합니다.
+              </p>
+</div>
+</div>
+</div>
+<!-- F3 -->
+<div class="bg-surface-container-low p-space-lg rounded-xl flex flex-col gap-space-md shadow-md">
+<div class="flex items-center gap-space-sm">
+<span class="px-2 py-0.5 rounded bg-primary-container text-on-primary-container font-label-code-sm text-label-code-sm font-semibold">F3</span>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">단계별 경고 및 초저지연 BLE 통신</h3>
+</div>
+<div class="space-y-space-sm font-body-md text-body-md">
+<div>
+<span class="font-label-code-sm text-label-code-sm text-on-surface-variant block font-semibold">무엇을</span>
+<p class="text-on-surface-variant">순간 노이즈로 인한 경고 깜빡임(Flapping)을 방지하고 하드웨어 액추에이터에 20ms 이내 극저지연으로 상태를 전달해야 합니다.</p>
+</div>
+<div>
+<span class="font-label-code-sm text-label-code-sm text-primary block font-semibold">어떻게</span>
+<p class="text-on-surface">
+                상태 전이 시 상·하한 임계치를 분리한 300ms 히스테리시스 윈도우 필터를 도입했습니다. BLE 통신은 패킷 헤더 오버헤드를 배제한 1-Byte 커스텀 GATT 브로드캐스팅 방식을 채택하여 ESP32-C3 마이크로컨트롤러가 수신 즉시 하드웨어 PWM을 통해 스트로브 LED를 구동합니다.
+              </p>
+</div>
+</div>
+</div>
+<!-- F4 -->
+<div class="bg-surface-container-low p-space-lg rounded-xl flex flex-col gap-space-md shadow-md">
+<div class="flex items-center gap-space-sm">
+<span class="px-2 py-0.5 rounded bg-primary-container text-on-primary-container font-label-code-sm text-label-code-sm font-semibold">F4</span>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">IMU 기반 지오메트리 자동 캘리브레이션</h3>
+</div>
+<div class="space-y-space-sm font-body-md text-body-md">
+<div>
+<span class="font-label-code-sm text-label-code-sm text-on-surface-variant block font-semibold">무엇을</span>
+<p class="text-on-surface-variant">자전거 프레임마다 상이한 시트포스트 각도(72~74도) 및 주행 자세에 따른 카메라 기울기 편차를 보정해야 합니다.</p>
+</div>
+<div>
+<span class="font-label-code-sm text-label-code-sm text-primary block font-semibold">어떻게</span>
+<p class="text-on-surface">
+                스마트폰 내장 6축 IMU 중력 가속도 벡터를 분석해 정차 시 자전거 피치/롤 각도를 자동 추정합니다. 앱 최초 구동 시 1회 지면 높이 입력만으로 카메라 왜곡 및 투영 행렬 스케일 팩터를 자동 계산하는 제로 컨피그레이션 알고리즘을 구현했습니다.
+              </p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- PART 2: 8. 설계 의사결정 (4개의 엔지니어링 Q&A 카드) -->
+<section class="w-full py-space-xl lg:py-margin-lg bg-surface">
+<div class="w-full px-gutter-sm md:px-gutter lg:px-gutter-lg max-w-[1440px] mx-auto flex flex-col gap-space-xl">
+<div class="flex flex-col gap-space-xs">
+<span class="font-label-code-sm text-label-code-sm text-primary tracking-wider uppercase">Design Decisions</span>
+<h2 class="font-headline-lg text-headline-lg text-on-surface">엔지니어링 의사결정의 이유</h2>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-xl">실용성과 신뢰성을 우선시한 핵심 아키텍처 선택 배경입니다.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-space-lg">
+<div class="bg-surface-container-low p-space-lg rounded-xl flex flex-col gap-space-sm shadow-md">
+<div class="font-headline-sm text-headline-sm text-on-surface font-semibold flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-primary">device_hub</span>
+<span class="">Q1: 왜 Jetson이 아닌 스마트폰인가?</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant">
+            안전 경고는 지연이 짧고 일정해야 하므로 온디바이스 추론이 필수적이었습니다. 별도 임베디드 보드(Jetson Nano 등)는 수십만 원의 추가 비용과 무거운 보조 배터리가 필요합니다. 사용자가 이미 소지한 스마트폰의 NPU 가속기를 활용해 하드웨어 진입 장벽을 완전히 없앴으며, 모바일의 발열과 배터리 소모는 INT8 양자화 및 동적 추론 주기(차량 부재 시 10Hz, 접근 감지 시 30Hz) 조절 기법으로 해결했습니다.
+          </p>
+</div>
+<div class="bg-surface-container-low p-space-lg rounded-xl flex flex-col gap-space-sm shadow-md">
+<div class="font-headline-sm text-headline-sm text-on-surface font-semibold flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-primary">pedal_bike</span>
+<span class="">Q2: 왜 짐받이가 아닌 시트포스트인가?</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant">
+            로드바이크, 그래블, MTB 등 대다수 현대 스포츠 자전거는 짐받이 아일렛이 없어 추가 프레임 설치가 사용자에게 큰 마찰이 됩니다. 시트포스트는 모든 자전거에 공통 존재하는 표준 규격이므로 접근성이 극대화됩니다. 라이더마다 달라지는 카메라 장착 높이와 각도 문제는 IMU 자동 피치 보정 및 호모그래피 자동 캘리브레이션 알고리즘으로 소프트웨어적으로 해결했습니다.
+          </p>
+</div>
+<div class="bg-surface-container-low p-space-lg rounded-xl flex flex-col gap-space-sm shadow-md">
+<div class="font-headline-sm text-headline-sm text-on-surface font-semibold flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-primary">account_tree</span>
+<span class="">Q3: 왜 딥러닝 궤적 예측이 아닌 규칙 기반인가?</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant">
+            안전 직결(Safety-Critical) 시스템에서는 오작동 시 원인을 즉시 규명할 수 있는 해석 가능성(Explainability)과 엄격한 결정론적(Deterministic) 상한 지연 보장이 최우선입니다. 또한 스마트폰 자원을 객체 검출에 집중시키면서도, 물리 법칙에 기반한 등속·등가속도 칼만 필터와 CPA 기하학 규칙만으로 실도로 추월 궤적을 95% 이상 신뢰성 있게 포착할 수 있었습니다.
+          </p>
+</div>
+<div class="bg-surface-container-low p-space-lg rounded-xl flex flex-col gap-space-sm shadow-md">
+<div class="font-headline-sm text-headline-sm text-on-surface font-semibold flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-primary">terminal</span>
+<span class="">Q4: 왜 이 검출 모델(YOLOX-Nano)인가?</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant">
+            모바일 실시간 추론성 외에도 향후 실제 상용화 및 오픈소스 배포를 염두에 두고 GPL 계열 라이선스 리스크가 없는 Apache 2.0 라이선스의 YOLOX-Nano를 선택했습니다. 앵커 프리(Anchor-Free) 구조로 연산량이 적고, 백본의 Depthwise Separable Convolution이 모바일 NPU에 최적화되어 있어 최소한의 전력으로 높은 검출률을 달성했습니다.
+          </p>
+</div>
+</div>
+</div>
+</section>
+<!-- PART 3: 9. 검증 방법론 (#validation) -->
+<section class="w-full py-space-xl lg:py-margin-lg bg-surface-container-lowest" id="validation">
+<div class="w-full px-gutter-sm md:px-gutter lg:px-gutter-lg max-w-[1440px] mx-auto flex flex-col gap-space-xl">
+<div class="flex flex-col gap-space-xs">
+<span class="font-label-code-sm text-label-code-sm text-primary tracking-wider uppercase">Validation Pipeline</span>
+<h2 class="font-headline-lg text-headline-lg text-on-surface">3단계 체계적 실증 검증 프레임워크</h2>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-2xl">
+          실제 도로 주행 환경에서의 신뢰성을 담보하기 위해 통제 실험실 환경부터 복잡 도심 실차 데이터셋까지 다각도로 검증을 진행했습니다.
+        </p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-space-lg">
+<div class="bg-surface-container-low p-space-lg rounded-xl flex flex-col gap-space-sm shadow-md">
+<div class="flex items-center justify-between">
+<span class="font-label-code-sm text-label-code-sm text-primary">STEP 01</span>
+<span class="material-symbols-outlined text-outline">tune</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">비교 대조군</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">
+            동일한 실주행 고해상도 비디오 데이터셋에 기존 상용 자전거 레이더 알고리즘을 소프트웨어적으로 모사한 ‘직선 거리 및 속도 임계치 단일 규칙’을 적용하여 대조군을 구축했습니다.
+          </p>
+</div>
+<div class="bg-surface-container-low p-space-lg rounded-xl flex flex-col gap-space-sm shadow-md">
+<div class="flex items-center justify-between">
+<span class="font-label-code-sm text-label-code-sm text-primary">STEP 02</span>
+<span class="material-symbols-outlined text-outline">straighten</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">통제 실험</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">
+            폐쇄형 아스팔트 트랙 노면에 0.5m 단위 정밀 격자 마킹을 시공하고, 정속 주행 차량의 추월 시나리오(간격 0.6m~2.5m)를 반복 재현하여 광학 센서 기반 Ground Truth 데이터셋을 확보했습니다.
+          </p>
+</div>
+<div class="bg-surface-container-low p-space-lg rounded-xl flex flex-col gap-space-sm shadow-md">
+<div class="flex items-center justify-between">
+<span class="font-label-code-sm text-label-code-sm text-primary">STEP 03</span>
+<span class="material-symbols-outlined text-outline">directions_car</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">실도로 데이터</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">
+            도심 간선도로, 교외 1차로 국도, 한강 자전거 합류 도로 등 복합 주행 환경에서 자연 발생한 실제 300+건의 실차 추월 비디오를 수집하여 엣지 NPU 실시간 로그를 검증했습니다.
+          </p>
+</div>
+</div>
+</div>
+</section>
+<!-- PART 3: 10. 결과 지표 (4개 메트릭 카드 + 차트 시각화) -->
+<section class="w-full py-space-xl lg:py-margin-lg bg-surface">
+<div class="w-full px-gutter-sm md:px-gutter lg:px-gutter-lg max-w-[1440px] mx-auto flex flex-col gap-space-xl">
+<div class="flex flex-col gap-space-xs">
+<span class="font-label-code-sm text-label-code-sm text-primary tracking-wider uppercase">Validation Metrics</span>
+<h2 class="font-headline-lg text-headline-lg text-on-surface">정량적 검증 성능 지표</h2>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-space-md">
+<!-- Metric 1 -->
+<div class="bg-surface-container-low p-space-lg rounded-xl flex flex-col justify-between shadow-md">
+<div class="flex flex-col gap-space-xs">
+<span class="font-label-code-sm text-label-code-sm text-on-surface-variant">FALSE ALERTS REDUCTION</span>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">불필요한 경고 감소율</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant pt-space-xs">안전 추월 케이스의 허위 경고 필터링 성능</p>
+</div>
+<div class="pt-space-md">
+<span class="font-display text-display text-primary font-bold">54.2<span class="text-headline-sm">%</span></span>
+<span class="font-label-code-sm text-label-code-sm text-outline block">목표: 기존 레이더 대비 50% 이상</span>
+</div>
+</div>
+<!-- Metric 2 -->
+<div class="bg-surface-container-low p-space-lg rounded-xl flex flex-col justify-between shadow-md">
+<div class="flex flex-col gap-space-xs">
+<span class="font-label-code-sm text-label-code-sm text-on-surface-variant">CLOSE PASS DETECTION</span>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">위험 추월 감지율</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant pt-space-xs">1.0m 이내 근접 추월 미탐지 방지율</p>
+</div>
+<div class="pt-space-md">
+<span class="font-display text-display text-secondary font-bold">93.8<span class="text-headline-sm">%</span></span>
+<span class="font-label-code-sm text-label-code-sm text-outline block">목표: 90% 이상 (Recall 기준)</span>
+</div>
+</div>
+<!-- Metric 3 -->
+<div class="bg-surface-container-low p-space-lg rounded-xl flex flex-col justify-between shadow-md">
+<div class="flex flex-col gap-space-xs">
+<span class="font-label-code-sm text-label-code-sm text-on-surface-variant">CLEARANCE RMSE</span>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">측면 간격 추정 오차</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant pt-space-xs">단안 호모그래피 기반 CPA 추정 RMSE</p>
+</div>
+<div class="pt-space-md">
+<span class="font-display text-display text-on-surface font-bold">0.19<span class="text-headline-sm">m</span></span>
+<span class="font-label-code-sm text-label-code-sm text-outline block">목표: 0.3m 이하 오차 유지</span>
+</div>
+</div>
+<!-- Metric 4 -->
+<div class="bg-surface-container-low p-space-lg rounded-xl flex flex-col justify-between shadow-md">
+<div class="flex flex-col gap-space-xs">
+<span class="font-label-code-sm text-label-code-sm text-on-surface-variant">END-TO-END LATENCY</span>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">경고 발화 지연시간</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant pt-space-xs">카메라 캡처부터 LED/부저 발화까지 전구간</p>
+</div>
+<div class="pt-space-md">
+<span class="font-display text-display text-primary font-bold">148<span class="text-headline-sm">ms</span></span>
+<span class="font-label-code-sm text-label-code-sm text-outline block">목표: 200ms 이하 상한 보장</span>
+</div>
+</div>
+</div>
+<!-- Telemetry Chart Placeholder (SVG) -->
+<div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-lg flex flex-col gap-space-md">
+<div class="flex flex-wrap items-center justify-between gap-space-sm font-label-code-sm text-label-code-sm">
+<span class="text-primary font-semibold">VALIDATION BENCH: TIME-TO-COLLISION (s) vs LATERAL CLEARANCE (m)</span>
+<span class="text-outline">BENCH_LOG_2024_Q4_V0.9.csv</span>
+</div>
+<!-- Scalable Telemetry Curve SVG -->
+<div class="w-full h-48 sm:h-64 flex items-center justify-center bg-surface-container-low rounded p-space-sm relative">
+<svg class="w-full h-full text-primary" fill="none" preserveAspectRatio="none" viewBox="0 0 800 240">
+<!-- Grid Lines -->
+<path d="M 50 20 L 780 20 M 50 70 L 780 70 M 50 120 L 780 120 M 50 170 L 780 170 M 50 210 L 780 210" stroke="currentColor" stroke-opacity="0.08" stroke-width="1"></path>
+<path d="M 50 20 L 50 210 M 200 20 L 200 210 M 350 20 L 350 210 M 500 20 L 500 210 M 650 20 L 650 210 M 780 20 L 780 210" stroke="currentColor" stroke-opacity="0.08" stroke-width="1"></path>
+<!-- Danger Zone Highlight -->
+<rect fill="#EF4444" fill-opacity="0.05" height="70" width="730" x="50" y="140"></rect>
+<!-- Safe / Baseline trajectory curve -->
+<path d="M 60 40 Q 250 50, 450 70 T 770 95" fill="none" stroke="#869397" stroke-dasharray="4 4" stroke-width="2"></path>
+<!-- RearGuard Predicted & Actual Curves -->
+<path d="M 60 55 C 220 60, 380 90, 520 145 C 590 175, 680 165, 770 150" fill="none" stroke="#06B6D4" stroke-width="3"></path>
+<!-- Event Points -->
+<circle class="animate-ping" cx="520" cy="145" fill="#EF4444" r="5"></circle>
+<circle cx="520" cy="145" fill="#EF4444" r="4"></circle>
+</svg>
+<!-- Inset Labels -->
+<div class="absolute bottom-3 left-6 font-label-code-sm text-label-code-sm text-outline">Approach Distance (m) →</div>
+<div class="absolute top-3 right-6 flex items-center gap-space-md font-label-code-sm text-label-code-sm">
+<span class="flex items-center gap-1 text-on-surface-variant"><span class="w-3 h-0.5 bg-outline"></span>기존 거리 기반</span>
+<span class="flex items-center gap-1 text-primary"><span class="w-3 h-0.5 bg-primary"></span>RearGuard 호모그래피</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- PART 3: 11. 한계와 다음 단계 (Limitations & Roadmap) -->
+<section class="w-full py-space-xl lg:py-margin-lg bg-surface-container-lowest">
+<div class="w-full px-gutter-sm md:px-gutter lg:px-gutter-lg max-w-[1440px] mx-auto flex flex-col gap-space-xl">
+<div class="flex flex-col gap-space-xs">
+<span class="font-label-code-sm text-label-code-sm text-primary tracking-wider uppercase">Honest Engineering</span>
+<h2 class="font-headline-lg text-headline-lg text-on-surface">시스템 한계점과 차기 로드맵</h2>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-space-lg">
+<!-- Known Limitations -->
+<div class="bg-surface-container-low p-space-lg rounded-xl flex flex-col gap-space-md shadow-md">
+<div class="flex items-center gap-space-xs text-secondary">
+<span class="material-symbols-outlined text-[24px]">build_circle</span>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">현재 한계</h3>
+</div>
+<ul class="space-y-space-sm font-body-md text-body-md text-on-surface-variant list-disc pl-5">
+<li class="">
+<strong class="text-on-surface">조도 조건 의존성:</strong> 현재 비전 모델은 주간 및 맑은 날씨 조도 환경에 최적화되어 있어 역광이나 야간 가로등 부재 구간에서 검출 신뢰도가 다소 감소합니다.
+            </li>
+<li class="">
+<strong class="text-on-surface">도로 종단 경사로 왜곡:</strong> 급격한 헤어핀 오르막/내리막 및 과속방지턱 구간에서 평면 호모그래피 가정이 일시적으로 위배되어 순간 거리 오차가 발생합니다.
+            </li>
+</ul>
+</div>
+<!-- Next Milestones -->
+<div class="bg-surface-container-low p-space-lg rounded-xl flex flex-col gap-space-md shadow-md">
+<div class="flex items-center gap-space-xs text-primary">
+<span class="material-symbols-outlined text-[24px]">rocket_launch</span>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">다음 마일스톤</h3>
+</div>
+<ul class="space-y-space-sm font-body-md text-body-md text-on-surface-variant list-disc pl-5">
+<li class="">
+<strong class="text-on-surface">야간 헤드라이트 빔 트래커:</strong> 광량 부족 시에도 후방 차량의 듀얼 헤드라이트 기하학 패턴을 검출하여 거리와 속도를 추정하는 다크니스 모드 추가.
+            </li>
+<li class="">
+<strong class="text-on-surface">iOS CoreML 포팅:</strong> Android Camera2 외 Apple Silicon Neural Engine에 최적화된 CoreML 가속 파이프라인 개발.
+            </li>
+<li class="">
+<strong class="text-on-surface">공유 PM 마운트 키트:</strong> 전동 킥보드, 공유 바이크 등 라스트마일 모빌리티 전용 댐퍼 마운트 및 전용 위험도 프로파일 확장.
+            </li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+<!-- PART 4: 12. 엔지니어링 개발 노트 (#devnotes) -->
+<section class="w-full py-space-xl lg:py-margin-lg bg-surface" id="devnotes">
+<div class="w-full px-gutter-sm md:px-gutter lg:px-gutter-lg max-w-[1440px] mx-auto flex flex-col gap-space-xl">
+<div class="flex flex-col gap-space-xs">
+<span class="font-label-code-sm text-label-code-sm text-primary tracking-wider uppercase">Engineering Logs</span>
+<h2 class="font-headline-lg text-headline-lg text-on-surface">현장에서 기록한 개발 로그</h2>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-xl">
+          실제 개발 과정에서 부딪힌 하드웨어-소프트웨어 경계 문제와 성능 튜닝의 기록입니다.
+        </p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-space-lg">
+<!-- Dev Note 1 -->
+<div class="bg-surface-container-low p-space-lg rounded-xl flex flex-col justify-between gap-space-md shadow-md">
+<div class="flex flex-col gap-space-sm">
+<div class="flex items-center justify-between font-label-code-sm text-label-code-sm text-outline">
+<span class="">2024.10.14</span>
+<span class="text-primary font-medium">Computer Vision</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface hover:text-primary transition-colors cursor-pointer">
+              단안 카메라 호모그래피에서 차체 바운딩 박스 접지점 노이즈 줄이기
+            </h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+              차량 하부 그림자와 도로 아스팔트 반사광으로 인해 하단 바운딩 박스가 요동치는 문제를 해결하기 위해, 소실점(Vanishing Point) 제약과 차선 세그먼트를 융합한 적응형 접지점 필터를 설계했습니다.
+            </p>
+</div>
+<span class="font-label-code-sm text-label-code-sm text-primary flex items-center gap-1">
+<span class="">자세히 읽기</span>
+<span class="material-symbols-outlined text-[14px]">arrow_forward</span>
+</span>
+</div>
+<!-- Dev Note 2 -->
+<div class="bg-surface-container-low p-space-lg rounded-xl flex flex-col justify-between gap-space-md shadow-md">
+<div class="flex flex-col gap-space-sm">
+<div class="flex items-center justify-between font-label-code-sm text-label-code-sm text-outline">
+<span class="">2024.11.02</span>
+<span class="text-primary font-medium">Edge AI &amp; Android</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface hover:text-primary transition-colors cursor-pointer">
+              Android Camera2 API와 NPU 파이프라인의 제로카피(Zero-Copy) 버퍼 튜닝
+            </h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+              ImageReader YUV_420_888 버퍼를 C++ NDK 레벨에서 TFLite DirectBuffer로 직접 매핑하여 CPU 복사 오버헤드를 완전히 제거, 프레임 지연을 68ms에서 41ms로 40% 단축시켰습니다.
+            </p>
+</div>
+<span class="font-label-code-sm text-label-code-sm text-primary flex items-center gap-1">
+<span class="">자세히 읽기</span>
+<span class="material-symbols-outlined text-[14px]">arrow_forward</span>
+</span>
+</div>
+<!-- Dev Note 3 -->
+<div class="bg-surface-container-low p-space-lg rounded-xl flex flex-col justify-between gap-space-md shadow-md">
+<div class="flex flex-col gap-space-sm">
+<div class="flex items-center justify-between font-label-code-sm text-label-code-sm text-outline">
+<span class="">2024.11.28</span>
+<span class="text-primary font-medium">Embedded &amp; BLE</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface hover:text-primary transition-colors cursor-pointer">
+              ESP32-C3와 스마트폰 간 BLE 커스텀 프로파일 지연시간 20ms 이내 달성
+            </h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+              Android BLE Connection Interval을 최소 단위(7.5ms)로 협상하고 비동기 FreeRTOS 태스크 큐 구조로 하드웨어 PWM을 즉시 트리거하여 비프음 및 LED 발광 지연을 상한 20ms 이내로 묶어냈습니다.
+            </p>
+</div>
+<span class="font-label-code-sm text-label-code-sm text-primary flex items-center gap-1">
+<span class="">자세히 읽기</span>
+<span class="material-symbols-outlined text-[14px]">arrow_forward</span>
+</span>
+</div>
+</div>
+</div>
+</section>
+<!-- PART 4: 13. 만든 사람 (Portfolio Author Profile) -->
 
-  <!-- 글꼴: Pretendard -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
-
-  <style>
-    /* ===== 색상 설정: 이 값만 바꿔도 전체 분위기가 바뀝니다 ===== */
-    :root {
-      --bg: #F5F6F3;       /* 배경 */
-      --ink: #1E2422;      /* 기본 글자 */
-      --muted: #5E6764;    /* 보조 글자 */
-      --line: #D5D9D4;     /* 구분선 */
-      --accent: #F5C518;   /* 강조 색 */
-      --surface: #FFFFFF;  /* 이미지 영역 등 */
-    }
-
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-
-    body {
-      font-family: "Pretendard", -apple-system, "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
-      background: var(--bg);
-      color: var(--ink);
-      line-height: 1.7;
-      word-break: keep-all;
-    }
-
-    img { max-width: 100%; display: block; }
-    a { color: inherit; }
-    a:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
-
-    .wrap { max-width: 1040px; margin: 0 auto; padding: 0 24px; }
-
-    /* ----- 상단 메뉴 ----- */
-    header { border-bottom: 1px solid var(--line); }
-    .nav {
-      display: flex; justify-content: space-between; align-items: center;
-      height: 64px;
-    }
-    .logo { font-weight: 800; font-size: 1.1rem; text-decoration: none; }
-    .nav ul { display: flex; gap: 24px; list-style: none; }
-    .nav ul a { text-decoration: none; color: var(--muted); font-size: 0.95rem; }
-    .nav ul a:hover { color: var(--ink); }
-
-    /* ----- 첫 화면 ----- */
-    .hero {
-      display: grid; grid-template-columns: 1fr 1fr; gap: 48px;
-      align-items: center; padding: 88px 0;
-    }
-    .hero h1 {
-      font-size: clamp(2.6rem, 6vw, 4.2rem);
-      font-weight: 800; line-height: 1.1; letter-spacing: -0.03em;
-    }
-    .hero .tagline { margin-top: 20px; font-size: 1.2rem; color: var(--muted); max-width: 30em; }
-    .button {
-      display: inline-block; margin-top: 32px; padding: 14px 26px;
-      background: var(--ink); color: var(--bg);
-      text-decoration: none; font-weight: 600; border-radius: 999px;
-    }
-    .button:hover { background: #000; }
-
-    /* 제품 이미지 자리: 이미지를 넣으면 회색 안내 문구 대신 사진이 보입니다 */
-    .product-shot {
-      background: var(--accent);
-      border-radius: 24px;
-      padding: 28px;
-    }
-    .product-shot .frame {
-      aspect-ratio: 4 / 3;
-      background: var(--surface);
-      border-radius: 12px;
-      display: flex; align-items: center; justify-content: center;
-      color: var(--muted); text-align: center; overflow: hidden;
-    }
-    .product-shot .frame img { width: 100%; height: 100%; object-fit: cover; }
-
-    /* ----- 공통 섹션 ----- */
-    section.block { padding: 80px 0; border-top: 1px solid var(--line); }
-    section.block h2 { font-size: 1.9rem; font-weight: 800; letter-spacing: -0.02em; margin-bottom: 16px; }
-    section.block .lead { color: var(--muted); max-width: 36em; font-size: 1.05rem; }
-
-    /* ----- 작동 방식: 감지 → 판단 → 행동 ----- */
-    .flow {
-      display: grid; grid-template-columns: repeat(3, 1fr); gap: 0;
-      margin-top: 40px; list-style: none; counter-reset: step;
-    }
-    .flow li {
-      padding: 0 28px 0 0; position: relative; counter-increment: step;
-    }
-    .flow li::before {
-      content: counter(step);
-      display: flex; align-items: center; justify-content: center;
-      width: 40px; height: 40px; margin-bottom: 18px;
-      border-radius: 50%; background: var(--accent);
-      font-weight: 800;
-    }
-    /* 단계 사이 연결선 */
-    .flow li:not(:last-child)::after {
-      content: ""; position: absolute; top: 20px; left: 52px; right: 12px;
-      height: 2px; background: var(--line);
-    }
-    .flow h3 { font-size: 1.2rem; margin-bottom: 6px; }
-    .flow p { color: var(--muted); }
-
-    /* ----- 주요 기능 ----- */
-    .features { margin-top: 40px; list-style: none; }
-    .features li {
-      display: grid; grid-template-columns: 220px 1fr; gap: 24px;
-      padding: 24px 0; border-bottom: 1px solid var(--line);
-    }
-    .features li:first-child { border-top: 1px solid var(--line); }
-    .features h3 { font-size: 1.15rem; }
-    .features p { color: var(--muted); }
-
-    /* ----- 만든 사람 / 하단 ----- */
-    footer { border-top: 1px solid var(--line); padding: 40px 0 56px; color: var(--muted); font-size: 0.95rem; }
-    footer .wrap { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
-
-    /* ----- 모바일 화면 ----- */
-    @media (max-width: 760px) {
-      .nav ul { display: none; }
-      .hero { grid-template-columns: 1fr; padding: 56px 0; gap: 36px; }
-      .flow { grid-template-columns: 1fr; gap: 32px; }
-      .flow li::after { display: none; }
-      .features li { grid-template-columns: 1fr; gap: 4px; }
-      section.block { padding: 56px 0; }
-    }
-  </style>
-</head>
-<body>
-
-  <!-- ===== 상단 메뉴 ===== -->
-  <header>
-    <nav class="wrap nav">
-      <a class="logo" href="#">[제품 이름]</a>
-      <ul>
-        <li><a href="#problem">문제</a></li>
-        <li><a href="#how">작동 방식</a></li>
-        <li><a href="#features">기능</a></li>
-      </ul>
-    </nav>
-  </header>
-
-  <main>
-    <!-- ===== 첫 화면: 제품 이름과 한 줄 소개 ===== -->
-    <div class="wrap hero">
-      <div>
-        <h1>[제품 이름]</h1>
-        <p class="tagline">[제품을 한 문장으로 소개해 주세요. 누구에게 어떤 도움을 주는지 쓰면 좋습니다.]</p>
-        <a class="button" href="#how">작동 방식 보기</a>
+<!-- PART 4: 14. 푸터 면책 조항 및 라이선스 (Footer Inner) -->
+<section class="w-full py-space-lg bg-surface-container-lowest">
+<div class="w-full px-gutter-sm md:px-gutter lg:px-gutter-lg max-w-[1440px] mx-auto flex flex-col gap-space-md items-center text-center">
+<!-- Safety Disclaimer Banner -->
+<div class="bg-surface-container-low p-space-md rounded-xl max-w-3xl shadow-sm text-on-surface-variant font-body-sm text-body-sm flex items-start gap-space-sm text-left">
+<span class="material-symbols-outlined text-secondary shrink-0 text-[20px]">shield</span>
+<p class="">
+<strong class="text-on-surface">안전 면책 조항:</strong> RearGuard는 자전거 라이더의 상황 인지를 보조하는 ADAS 안전 보조 시스템이며, 라이더 본인의 주의 의무와 안전 운행 책임을 대신할 수 없습니다. 모든 주행 환경에서 라이더 본인의 시각 확인과 방어 운전이 최우선입니다.
+        </p>
+</div>
+<div class="font-label-code-sm text-label-code-sm text-outline pt-space-xs">
+        © 2025 RearGuard Project. Designed for Autonomous Precision &amp; Rider Safety.
       </div>
+</div>
+</section>
+</div></main><footer class="w-full bg-surface-container-lowest border-t border-outline-variant/20 py-space-xl"><div class="w-full px-gutter-sm md:px-gutter lg:px-gutter-lg flex flex-col md:flex-row items-center justify-between gap-space-lg"><div class="flex items-center gap-space-md"><img alt="RearGuard Logo" class="h-6 w-auto opacity-70 object-contain" src="images/logo.png"><span class="font-label-code-sm text-label-code-sm text-on-surface-variant">© 2025 RearGuard ADAS Project. Safety-Critical Edge Autonomy.</span></div><div class="flex items-center gap-space-lg text-on-surface-variant font-label-code-sm text-label-code-sm"><a class="hover:text-primary transition-colors" href="#">Telemetry Spec</a><a class="hover:text-primary transition-colors" href="#">ISO 26262 ASIL-B</a><a class="hover:text-primary transition-colors" href="#">CAN-FD Docs</a></div></div></footer>
 
-      <div class="product-shot">
-        <div class="frame">
-          <!-- 이미지를 넣으려면 아래 문구를 지우고 이렇게 바꾸세요:
-               <img src="images/product.png" alt="제품 사진 설명"> -->
-          <span>제품 이미지 자리<br>images 폴더에 사진을 넣어 주세요</span>
-        </div>
-      </div>
-    </div>
-
-    <!-- ===== 해결하려는 문제 ===== -->
-    <section class="block" id="problem">
-      <div class="wrap">
-        <h2>[어떤 문제를 해결하나요?]</h2>
-        <p class="lead">[사용자가 겪는 불편이나 문제를 2~3문장으로 설명해 주세요. 내 제품이 왜 필요한지가 드러나면 좋습니다.]</p>
-      </div>
-    </section>
-
-    <!-- ===== 작동 방식: 피지컬 AI의 감지 → 판단 → 행동 ===== -->
-    <section class="block" id="how">
-      <div class="wrap">
-        <h2>이렇게 작동합니다</h2>
-        <p class="lead">[제품이 현실 세계에서 어떻게 움직이는지 간단히 소개해 주세요.]</p>
-
-        <ol class="flow">
-          <li>
-            <h3>감지</h3>
-            <p>[어떤 센서로 무엇을 알아차리나요?]</p>
-          </li>
-          <li>
-            <h3>판단</h3>
-            <p>[AI가 어떤 정보를 보고 무엇을 결정하나요?]</p>
-          </li>
-          <li>
-            <h3>행동</h3>
-            <p>[결정에 따라 어떻게 움직이거나 반응하나요?]</p>
-          </li>
-        </ol>
-      </div>
-    </section>
-
-    <!-- ===== 주요 기능: 항목을 복사해서 늘리거나 지워도 됩니다 ===== -->
-    <section class="block" id="features">
-      <div class="wrap">
-        <h2>주요 기능</h2>
-
-        <ul class="features">
-          <li>
-            <h3>[기능 1]</h3>
-            <p>[기능 설명]</p>
-          </li>
-          <li>
-            <h3>[기능 2]</h3>
-            <p>[기능 설명]</p>
-          </li>
-          <li>
-            <h3>[기능 3]</h3>
-            <p>[기능 설명]</p>
-          </li>
-        </ul>
-      </div>
-    </section>
-  </main>
-
-  <!-- ===== 하단: 만든 사람 정보 ===== -->
-  <footer>
-    <div class="wrap">
-      <span>만든 사람: [이름]</span>
-      <span>나만의 피지컬 AI 제품 기획 과제</span>
-    </div>
-  </footer>
-
-</body>
-</html>
+</body></html>
