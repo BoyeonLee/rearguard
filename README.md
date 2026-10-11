@@ -6,14 +6,21 @@
 ## 폴더 구성
 
 ```
-physicalAI/
+rearguard/
 ├── README.md          ← 지금 보고 있는 안내 문서
 ├── index.html         ← 제품 소개 홈페이지 (GitHub Pages 시작 파일)
+├── js/
+│   └── hero-animation.js   ← 홈페이지 첫 화면 애니메이션
 ├── images/            ← 홈페이지에 쓸 이미지 (제품 사진, 스케치 등)
+├── stitch/            ← Stitch로 만든 홈페이지 디자인 원본
 ├── PRD/
 │   └── PRD.md         ← 제품 요구사항 문서 (무엇을, 왜, 어떻게 만들지)
 └── report/
-    └── report.md      ← 과제 보고서 (과정, 회고, 배운 점)
+    ├── checklist.md                       ← 데이터 전처리용 현장 조사 체크리스트 (빈 양식)
+    ├── checklist_result.md                ← 현장 조사 결과 보고서 (PoC 개발 방향 결정)
+    ├── nuScenes_checklist.md              ← nuScenes 사양 확인 체크리스트
+    ├── data_preprocessing_design.md       ← 데이터 전처리 기법 및 순서 설계 보고서
+    └── model_training_validation_design.md ← 검출 모델 선정 및 학습·검증 설계 보고서
 ```
 
 ## GitHub Pages 배포 방법
