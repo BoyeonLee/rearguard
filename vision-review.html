@@ -1,0 +1,145 @@
+<!DOCTYPE html><html class="dark" lang="ko" style=""><head><meta charset="utf-8"><meta content="width=device-width, initial-scale=1.0" name="viewport"><meta content="web_standard" name="shell-type"><title>비전 모델 검토 - RearGuard</title><link href="https://fonts.googleapis.com" rel="preconnect"><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet"><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"><style>@layer base{html,body{margin:0;padding:0;background-color:#0f131c;}html{scroll-behavior:smooth;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}[data-rg-hero] .rg-chip{position:absolute;left:50%;top:52px;transform:translateX(-50%);white-space:nowrap;transition:opacity .25s;padding:2px 8px;border-radius:4px;font-weight:700}[data-rg-hero] .rg-chip[data-tone="amber"]{background:#ee9800;color:#2a1700}[data-rg-hero] .rg-chip[data-tone="red"]{background:#ff5a52;color:#2a0003;box-shadow:0 0 16px rgba(255,90,82,.6)}[data-rg-hero] .rg-vig{box-shadow:inset 0 0 90px 12px rgba(255,60,50,.55);opacity:0}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={"darkMode":"class","theme":{"extend":{"colors":{"primary-fixed":"#acedff","on-primary-fixed-variant":"#004e5c","primary":"#4cd7f6","primary-container":"#06b6d4","primary-fixed-dim":"#4cd7f6","tertiary-fixed":"#ffdad7","on-primary-container":"#00424f","on-secondary-fixed":"#2a1700","inverse-surface":"#dfe2ee","on-tertiary":"#68000a","secondary":"#ffb95f","surface-dim":"#0f131c","on-tertiary-container":"#7e000f","secondary-fixed":"#ffddb8","surface-tint":"#4cd7f6","inverse-on-surface":"#2c3039","on-surface":"#dfe2ee","on-error-container":"#ffdad6","surface-container-lowest":"#0a0e16","on-surface-variant":"#bcc9cd","secondary-container":"#ee9800","on-background":"#dfe2ee","tertiary":"#ffb3ad","tertiary-fixed-dim":"#ffb3ad","inverse-primary":"#00687a","surface-container-highest":"#31353e","surface-container":"#1c2028","on-primary-fixed":"#001f26","on-error":"#690005","surface-variant":"#31353e","surface":"#0f131c","surface-bright":"#353942","on-secondary":"#472a00","surface-container-high":"#262a33","on-primary":"#003640","outline-variant":"#3d494c","on-tertiary-fixed":"#410004","error":"#ffb4ab","tertiary-container":"#ff817a","surface-container-low":"#181c24","error-container":"#93000a","on-secondary-container":"#5b3800","on-tertiary-fixed-variant":"#930013","secondary-fixed-dim":"#ffb95f","on-secondary-fixed-variant":"#653e00","outline":"#869397","background":"#0f131c"},"borderRadius":{"DEFAULT":"0.125rem","lg":"0.25rem","xl":"0.5rem","full":"0.75rem"},"spacing":{"gutter-sm":"1rem","margin-md":"3rem","space-xl":"2.5rem","margin-lg":"5rem","gutter-lg":"2rem","space-lg":"1.5rem","gutter":"1.5rem","space-xs":"0.25rem","space-md":"1rem","space-sm":"0.5rem","margin":"1.5rem"},"fontFamily":{"headline-lg-mobile":["Inter"],"headline-md":["Inter"],"body-sm":["Inter"],"headline-lg":["Inter"],"headline-sm":["Inter"],"label-code-md":["JetBrains Mono"],"display":["Inter"],"label-code-lg":["JetBrains Mono"],"body-md":["Inter"],"body-lg":["Inter"],"label-code-sm":["JetBrains Mono"],"display-mobile":["Inter"]},"fontSize":{"headline-lg-mobile":["1.75rem",{"lineHeight":"1.25","letterSpacing":"-0.02em","fontWeight":"600"}],"headline-md":["1.75rem",{"lineHeight":"1.3","letterSpacing":"-0.02em","fontWeight":"600"}],"body-sm":["0.8125rem",{"lineHeight":"1.5","letterSpacing":"0","fontWeight":"400"}],"headline-lg":["2.5rem",{"lineHeight":"1.2","letterSpacing":"-0.025em","fontWeight":"600"}],"headline-sm":["1.25rem",{"lineHeight":"1.4","letterSpacing":"-0.015em","fontWeight":"600"}],"label-code-md":["0.8125rem",{"lineHeight":"1.4","letterSpacing":"0","fontWeight":"500"}],"display":["3.75rem",{"lineHeight":"1.1","letterSpacing":"-0.03em","fontWeight":"700"}],"label-code-lg":["1rem",{"lineHeight":"1.5","letterSpacing":"-0.01em","fontWeight":"500"}],"body-md":["0.9375rem",{"lineHeight":"1.6","letterSpacing":"-0.005em","fontWeight":"400"}],"body-lg":["1.125rem",{"lineHeight":"1.6","letterSpacing":"-0.01em","fontWeight":"400"}],"label-code-sm":["0.6875rem",{"lineHeight":"1.4","letterSpacing":"0.04em","fontWeight":"500"}],"display-mobile":["2.25rem",{"lineHeight":"1.2","letterSpacing":"-0.02em","fontWeight":"700"}]}}}};</script></head><body class="bg-surface font-body-md text-on-surface antialiased selection:bg-primary-container selection:text-on-primary-container"><header class="fixed top-0 left-0 right-0 z-50 bg-surface-container-lowest/85 backdrop-blur-md border-b border-outline-variant/30 shadow-[0_1px_8px_rgba(0,0,0,0.4)]"><div class="h-16 w-full px-gutter-sm md:px-gutter lg:px-gutter-lg flex items-center justify-between gap-space-md"><div class="flex items-center gap-space-md shrink-0"><a class="flex items-center gap-space-sm" data-path="overview" href="index.html"><img alt="RearGuard Logo" class="h-8 w-auto object-contain" src="images/logo.png"><span class="font-headline-sm text-headline-sm tracking-tight text-on-surface font-semibold hidden sm:inline-block">RearGuard</span></a><div class="hidden sm:flex items-center gap-space-xs px-space-xs py-0.5 rounded-lg bg-surface-container border border-outline-variant/40 text-primary font-label-code-sm text-label-code-sm"><span class="w-1.5 h-1.5 rounded-full bg-primary animate-pulse"></span><span class="">PoC</span></div></div><nav class="hidden xl:flex items-center gap-space-lg" data-active-classes="text-primary font-semibold"><a class="font-body-md text-body-md text-on-surface-variant hover:text-on-surface transition-colors" data-path="products" href="index.html#product">제품</a><a class="font-body-md text-body-md text-on-surface-variant hover:text-on-surface transition-colors" data-path="how-it-works" href="index.html#mechanism">작동 방식</a><a class="font-body-md text-body-md text-on-surface-variant hover:text-on-surface transition-colors" data-path="architecture" href="index.html#architecture">기술 설계</a><a class="font-body-md text-body-md text-on-surface-variant hover:text-on-surface transition-colors" data-path="model" href="index.html#model">검출 모델</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-on-surface transition-colors" data-path="preprocessing" href="index.html#preprocessing">데이터 전처리</a><a class="font-body-md text-body-md text-on-surface-variant hover:text-on-surface transition-colors" data-path="validation" href="index.html#validation">검증</a><a class="font-body-md text-body-md text-on-surface-variant hover:text-on-surface transition-colors" data-path="dev-notes" href="index.html#devnotes">개발 노트</a><a class="font-body-md text-body-md text-primary font-semibold transition-colors" data-path="docs" href="vision-review.html">추가문서</a></nav><div class="flex items-center gap-space-sm shrink-0"><a class="hidden md:flex items-center gap-space-xs px-space-md py-1.5 rounded-lg border border-outline-variant/60 bg-surface-container text-on-surface hover:bg-surface-container-high hover:text-primary transition-all font-label-code-sm text-label-code-sm" href="https://github.com" rel="noopener noreferrer" target="_blank"><span class="material-symbols-outlined text-[16px]">terminal</span><span class="">GitHub</span></a><a class="hidden sm:flex items-center gap-space-xs px-space-md py-1.5 rounded-lg bg-primary text-on-primary font-label-code-md text-label-code-md font-semibold shadow-[0_0_16px_rgba(6,182,212,0.3)] hover:bg-primary-fixed transition-all" href="index.html#demo"><span class="material-symbols-outlined text-[16px]">play_circle</span><span class="">Live Demo</span></a><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div><details class="xl:hidden relative"><summary class="list-none flex items-center justify-center p-space-xs rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container cursor-pointer"><span class="material-symbols-outlined text-[24px]">menu</span></summary><div class="absolute right-0 top-12 w-64 p-space-md bg-surface-container-low border border-outline-variant/50 rounded-xl shadow-2xl flex flex-col gap-space-sm"><a class="py-space-xs px-space-sm rounded text-on-surface-variant hover:bg-surface-container hover:text-on-surface font-body-sm text-body-sm transition-colors" data-path="products" href="index.html#product">제품</a><a class="py-space-xs px-space-sm rounded text-on-surface-variant hover:bg-surface-container hover:text-on-surface font-body-sm text-body-sm transition-colors" data-path="how-it-works" href="index.html#mechanism">작동 방식</a><a class="py-space-xs px-space-sm rounded text-on-surface-variant hover:bg-surface-container hover:text-on-surface font-body-sm text-body-sm transition-colors" data-path="architecture" href="index.html#architecture">기술 설계</a><a class="py-space-xs px-space-sm rounded text-on-surface-variant hover:bg-surface-container hover:text-on-surface font-body-sm text-body-sm transition-colors" data-path="model" href="index.html#model">검출 모델</a>
+<a class="py-space-xs px-space-sm rounded text-on-surface-variant hover:bg-surface-container hover:text-on-surface font-body-sm text-body-sm transition-colors" data-path="preprocessing" href="index.html#preprocessing">데이터 전처리</a><a class="py-space-xs px-space-sm rounded text-on-surface-variant hover:bg-surface-container hover:text-on-surface font-body-sm text-body-sm transition-colors" data-path="validation" href="index.html#validation">검증</a><a class="py-space-xs px-space-sm rounded text-on-surface-variant hover:bg-surface-container hover:text-on-surface font-body-sm text-body-sm transition-colors" data-path="dev-notes" href="index.html#devnotes">개발 노트</a><a class="py-space-xs px-space-sm rounded text-primary bg-surface-container font-body-sm text-body-sm font-semibold transition-colors" data-path="docs" href="vision-review.html">추가문서</a><div class="pt-space-xs mt-space-xs border-t border-outline-variant/30 flex flex-col gap-space-xs"><a class="flex items-center gap-space-xs py-space-xs px-space-sm text-on-surface-variant font-label-code-sm text-label-code-sm" href="https://github.com" target="_blank"><span class="material-symbols-outlined text-[16px]">terminal</span><span class="">GitHub Repo</span></a><a class="flex items-center justify-center py-space-xs px-space-sm rounded bg-primary text-on-primary font-label-code-sm text-label-code-sm font-semibold" href="index.html#demo"><span class="">Launch Live Demo</span></a></div></div></details></div></div></header><main class="w-full pt-16 bg-surface min-h-[calc(100vh-4rem)] relative"><div class="flex flex-col w-full text-on-surface">
+<!-- 개요 -->
+<section class="w-full py-space-xl lg:py-margin-lg bg-surface-container-lowest">
+<div class="w-full px-gutter-sm md:px-gutter lg:px-gutter-lg max-w-[1440px] mx-auto flex flex-col gap-space-lg">
+<a class="inline-flex items-center gap-space-xs self-start font-label-code-sm text-label-code-sm text-on-surface-variant hover:text-primary transition-colors" href="index.html#model"><span class="material-symbols-outlined text-[16px]">arrow_back</span><span class="">메인으로</span></a>
+<div class="flex flex-col gap-space-xs">
+<span class="font-label-code-sm text-label-code-sm text-primary tracking-wider uppercase">추가문서 · Vision Model Review</span>
+<h1 class="font-display-mobile text-display-mobile md:font-headline-lg md:text-headline-lg text-on-surface">최신 비전 모델 6종 검토</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-3xl">최근 많이 쓰이는 비전 모델 6종이 RearGuard PoC에 도움이 되는지 검토했습니다.</p>
+<div class="flex flex-wrap gap-space-sm pt-space-xs">
+<span class="text-xs bg-surface-container-high px-2 py-1 rounded font-mono text-on-surface-variant">YOLOE</span>
+<span class="text-xs bg-surface-container-high px-2 py-1 rounded font-mono text-on-surface-variant">DINO-X</span>
+<span class="text-xs bg-surface-container-high px-2 py-1 rounded font-mono text-on-surface-variant">SAM 3</span>
+<span class="text-xs bg-surface-container-high px-2 py-1 rounded font-mono text-on-surface-variant">SigLIP</span>
+<span class="text-xs bg-surface-container-high px-2 py-1 rounded font-mono text-on-surface-variant">OCR</span>
+<span class="text-xs bg-surface-container-high px-2 py-1 rounded font-mono text-on-surface-variant">MediaPipe</span>
+</div>
+</div>
+<div class="bg-surface-container-low border-l-4 border-primary p-space-lg rounded-xl flex flex-col gap-space-sm">
+<span class="font-label-code-sm text-label-code-sm text-primary font-semibold">결론</span>
+<p class="font-headline-sm text-headline-sm text-on-surface">검출 모델은 YOLO26n 하나로 충분합니다. 6종은 검토만 했고, 실제로는 쓰지 않습니다.</p>
+</div>
+</div>
+</section>
+<!-- 왜 YOLO26n으로 충분한가 -->
+<section class="w-full py-space-xl lg:py-margin-lg bg-surface">
+<div class="w-full px-gutter-sm md:px-gutter lg:px-gutter-lg max-w-[1440px] mx-auto flex flex-col gap-space-xl">
+<div class="flex flex-col gap-space-xs">
+<span class="font-label-code-sm text-label-code-sm text-primary tracking-wider uppercase">Why YOLO26n Is Enough</span>
+<h2 class="font-headline-lg text-headline-lg text-on-surface">왜 YOLO26n으로 충분한가</h2>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-space-lg">
+<div class="bg-surface-container-low p-space-lg rounded-xl flex flex-col gap-space-sm shadow-md">
+<span class="font-mono text-sm text-primary">01</span>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">실시간 조건을 더 잘 맞추는 모델이 없음</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">노트북 CPU에서 15FPS, 프레임에서 LED까지 200ms 이하라는 조건을 YOLO26n보다 잘 만족하는 모델이 6종 중에 없습니다.</p>
+</div>
+<div class="bg-surface-container-low p-space-lg rounded-xl flex flex-col gap-space-sm shadow-md">
+<span class="font-mono text-sm text-primary">02</span>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">찾을 대상이 3종으로 고정</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">RearGuard가 찾는 것은 승용차·대형차·이륜차뿐입니다. 아무 물체나 찾는 능력(오픈 보캐뷸러리)은 필요하지 않습니다.</p>
+</div>
+<div class="bg-surface-container-low p-space-lg rounded-xl flex flex-col gap-space-sm shadow-md">
+<span class="font-mono text-sm text-primary">03</span>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">오프라인 도구로도 쓰지 않음</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">라벨링 초안, 비식별화, 접지점 검증처럼 오프라인 작업에 쓸 여지는 있습니다. 다만 이번 PoC에서는 도입하지 않고 검토 기록으로만 남깁니다.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- 모델별 판단 -->
+<section class="w-full py-space-xl lg:py-margin-lg bg-surface-container-lowest">
+<div class="w-full px-gutter-sm md:px-gutter lg:px-gutter-lg max-w-[1440px] mx-auto flex flex-col gap-space-xl">
+<div class="flex flex-col gap-space-xs">
+<span class="font-label-code-sm text-label-code-sm text-primary tracking-wider uppercase">Model by Model</span>
+<h2 class="font-headline-lg text-headline-lg text-on-surface">모델별 판단</h2>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-space-lg">
+<div class="bg-surface-container-low p-space-lg rounded-xl flex flex-col gap-space-md shadow-md">
+<div class="flex items-center justify-between gap-space-sm"><h3 class="font-headline-sm text-headline-sm text-on-surface font-mono">YOLOE</h3><span class="text-xs bg-surface-container-high px-2 py-1 rounded font-mono text-outline">검토만</span></div>
+<p class="font-body-md text-body-md text-on-surface">이름만 주면 원하는 물체를 찾는 실시간 YOLO</p>
+<div class="flex flex-col gap-space-xs font-body-sm text-body-sm">
+<p class="text-on-surface-variant"><b class="text-on-surface font-semibold">실시간 경로:</b> 대체할 필요가 없습니다. 같은 크기의 YOLO26n보다 무겁고, 오픈 보캐뷸러리 장점을 쓸 일이 없습니다.</p>
+<p class="text-on-surface-variant"><b class="text-on-surface font-semibold">쓴다면:</b> 라벨링 초안, 번호판 위치 찾기</p>
+</div>
+</div>
+<div class="bg-surface-container-low p-space-lg rounded-xl flex flex-col gap-space-md shadow-md">
+<div class="flex items-center justify-between gap-space-sm"><h3 class="font-headline-sm text-headline-sm text-on-surface font-mono">DINO-X</h3><span class="text-xs bg-surface-container-high px-2 py-1 rounded font-mono text-outline">검토만</span></div>
+<p class="font-body-md text-body-md text-on-surface">클라우드 API로 쓰는 고성능 범용 검출 모델</p>
+<div class="flex flex-col gap-space-xs font-body-sm text-body-sm">
+<p class="text-on-surface-variant"><b class="text-on-surface font-semibold">실시간 경로:</b> 쓸 수 없습니다. 클라우드라서 로컬 추론 원칙을 어기고, 네트워크 왕복 때문에 200ms를 맞출 수 없습니다.</p>
+<p class="text-on-surface-variant"><b class="text-on-surface font-semibold">쓴다면:</b> 비식별화한 사진의 라벨링 초안</p>
+</div>
+</div>
+<div class="bg-surface-container-low p-space-lg rounded-xl flex flex-col gap-space-md shadow-md">
+<div class="flex items-center justify-between gap-space-sm"><h3 class="font-headline-sm text-headline-sm text-on-surface font-mono">SAM 3</h3><span class="text-xs bg-surface-container-high px-2 py-1 rounded font-mono text-outline">검토만</span></div>
+<p class="font-body-md text-body-md text-on-surface">글자로 지정한 물체를 픽셀 단위로 오려내는 모델</p>
+<div class="flex flex-col gap-space-xs font-body-sm text-body-sm">
+<p class="text-on-surface-variant"><b class="text-on-surface font-semibold">실시간 경로:</b> 쓸 수 없습니다. 파라미터가 848M이라 노트북 CPU에서 실시간으로 돌릴 수 없습니다.</p>
+<p class="text-on-surface-variant"><b class="text-on-surface font-semibold">쓴다면:</b> 접지점(박스 아래 변) 정답 검증</p>
+</div>
+</div>
+<div class="bg-surface-container-low p-space-lg rounded-xl flex flex-col gap-space-md shadow-md">
+<div class="flex items-center justify-between gap-space-sm"><h3 class="font-headline-sm text-headline-sm text-on-surface font-mono">SigLIP</h3><span class="text-xs bg-surface-container-high px-2 py-1 rounded font-mono text-outline">검토만</span></div>
+<p class="font-body-md text-body-md text-on-surface">이미지와 문장의 유사도로 분류하는 모델</p>
+<div class="flex flex-col gap-space-xs font-body-sm text-body-sm">
+<p class="text-on-surface-variant"><b class="text-on-surface font-semibold">실시간 경로:</b> 필요 없습니다. 박스를 찾지 못해 검출 모델을 대신할 수 없고, 차종 분류는 YOLO26n이 이미 합니다.</p>
+<p class="text-on-surface-variant"><b class="text-on-surface font-semibold">쓴다면:</b> 야간·우천 사진 거르기, 차종 재확인</p>
+</div>
+</div>
+<div class="bg-surface-container-low p-space-lg rounded-xl flex flex-col gap-space-md shadow-md">
+<div class="flex items-center justify-between gap-space-sm"><h3 class="font-headline-sm text-headline-sm text-on-surface font-mono">MediaPipe</h3><span class="text-xs bg-surface-container-high px-2 py-1 rounded font-mono text-outline">검토만</span></div>
+<p class="font-body-md text-body-md text-on-surface">구글의 온디바이스 비전 도구 모음</p>
+<div class="flex flex-col gap-space-xs font-body-sm text-body-sm">
+<p class="text-on-surface-variant"><b class="text-on-surface font-semibold">실시간 경로:</b> 대체할 필요가 없습니다. 검출 정확도(COCO AP 약 25)가 YOLO26n(40.9)보다 크게 낮습니다.</p>
+<p class="text-on-surface-variant"><b class="text-on-surface font-semibold">쓴다면:</b> 얼굴 비식별화, 스마트폰 이전 시 참고</p>
+</div>
+</div>
+<div class="bg-surface-container-low p-space-lg rounded-xl flex flex-col gap-space-md shadow-md border border-tertiary/30">
+<div class="flex items-center justify-between gap-space-sm"><h3 class="font-headline-sm text-headline-sm text-on-surface font-mono">OCR</h3><span class="text-xs bg-error-container/40 px-2 py-1 rounded font-mono text-tertiary">불채택</span></div>
+<p class="font-body-md text-body-md text-on-surface">이미지 속 글자를 읽는 기술</p>
+<div class="flex flex-col gap-space-xs font-body-sm text-body-sm">
+<p class="text-on-surface-variant"><b class="text-on-surface font-semibold">이유:</b> 번호판을 읽는 것은 개인정보를 저장·처리하지 않는다는 원칙과 정반대입니다. 위험 판단에 필요한 정보는 글자가 아니라 위치·궤적·차종입니다.</p>
+<p class="text-on-surface-variant"><b class="text-on-surface font-semibold">참고:</b> 번호판 크기로 거리를 확인하는 데에는 위치만 있으면 되므로 OCR이 필요 없습니다.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- 조건별 비교 -->
+<section class="w-full py-space-xl lg:py-margin-lg bg-surface">
+<div class="w-full px-gutter-sm md:px-gutter lg:px-gutter-lg max-w-[1440px] mx-auto flex flex-col gap-space-xl">
+<div class="flex flex-col gap-space-xs">
+<span class="font-label-code-sm text-label-code-sm text-primary tracking-wider uppercase">Criteria</span>
+<h2 class="font-headline-lg text-headline-lg text-on-surface">조건별 비교</h2>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-2xl">검출 모델 선정 조건 4가지에 로컬 추론과 개인정보 조건을 더해 6가지로 비교했습니다.</p>
+</div>
+<div class="overflow-x-auto rounded-xl bg-surface-container-low">
+<table class="w-full min-w-[760px] text-left font-body-sm text-body-sm">
+<thead class="text-on-surface-variant font-label-code-sm text-label-code-sm">
+<tr class="border-b border-outline-variant/30"><th class="p-space-md font-medium">조건</th><th class="p-space-md font-medium">YOLOE</th><th class="p-space-md font-medium">DINO-X</th><th class="p-space-md font-medium">SAM 3</th><th class="p-space-md font-medium">SigLIP</th><th class="p-space-md font-medium">OCR</th><th class="p-space-md font-medium">MediaPipe</th></tr>
+</thead>
+<tbody class="text-on-surface-variant">
+<tr class="border-b border-outline-variant/20"><td class="p-space-md text-on-surface">① 노트북 CPU 실시간</td><td class="p-space-md">△ 더 무거움</td><td class="p-space-md text-tertiary">✕ 클라우드</td><td class="p-space-md text-tertiary">✕ 848M</td><td class="p-space-md">△ 2차 분류만</td><td class="p-space-md text-tertiary">✕</td><td class="p-space-md">○</td></tr>
+<tr class="border-b border-outline-variant/20"><td class="p-space-md text-on-surface">② 30m 작은 차</td><td class="p-space-md">△</td><td class="p-space-md">○</td><td class="p-space-md">○ GPU 전제</td><td class="p-space-md text-outline">–</td><td class="p-space-md text-outline">–</td><td class="p-space-md text-tertiary">✕</td></tr>
+<tr class="border-b border-outline-variant/20"><td class="p-space-md text-on-surface">③ 박스 아래 변 정확도</td><td class="p-space-md">△</td><td class="p-space-md">○</td><td class="p-space-md text-primary font-semibold">◎ 픽셀 마스크</td><td class="p-space-md text-outline">–</td><td class="p-space-md text-outline">–</td><td class="p-space-md text-tertiary">✕</td></tr>
+<tr class="border-b border-outline-variant/20"><td class="p-space-md text-on-surface">④ Colab · 적은 데이터</td><td class="p-space-md">○</td><td class="p-space-md">○</td><td class="p-space-md">△ GPU 메모리</td><td class="p-space-md">○</td><td class="p-space-md">○</td><td class="p-space-md">△ 재학습 번거로움</td></tr>
+<tr class="border-b border-outline-variant/20"><td class="p-space-md text-on-surface">⑤ 로컬 추론</td><td class="p-space-md">○</td><td class="p-space-md text-tertiary font-semibold">✕</td><td class="p-space-md">○</td><td class="p-space-md">○</td><td class="p-space-md">○</td><td class="p-space-md">○</td></tr>
+<tr><td class="p-space-md text-on-surface">⑥ 개인정보</td><td class="p-space-md">○</td><td class="p-space-md">△ 비식별화 후에만</td><td class="p-space-md">○</td><td class="p-space-md">○</td><td class="p-space-md text-tertiary font-semibold">✕ 번호판 읽기</td><td class="p-space-md">○</td></tr>
+</tbody>
+</table>
+</div>
+<p class="font-body-sm text-body-sm text-outline">◎ 매우 적합 · ○ 적합 · △ 제약 있음 · ✕ 부적합 · – 해당 없음. 수치와 사용법은 2026-10-12 기준 각 모델의 공식 문서·저장소를 따랐습니다.</p>
+<div class="flex flex-col sm:flex-row gap-space-sm">
+<a class="inline-flex items-center justify-center gap-space-xs px-space-lg py-2.5 rounded bg-primary-container text-on-primary-container font-label-code-md text-label-code-md font-semibold hover:bg-primary transition-all" href="index.html#model"><span class="material-symbols-outlined text-[18px]">arrow_back</span><span class="">YOLO26n 선정 이유 보기</span></a>
+<a class="inline-flex items-center justify-center gap-space-xs px-space-lg py-2.5 rounded bg-surface-container-high text-on-surface font-label-code-md text-label-code-md hover:bg-surface-container-highest transition-all" href="report/vision_model_review.md"><span class="material-symbols-outlined text-[18px]">description</span><span class="">원문 보고서</span></a>
+</div>
+</div>
+</section>
+</div></main>
+<footer class="w-full bg-surface-container-lowest border-t border-outline-variant/20 py-space-xl"><div class="w-full px-gutter-sm md:px-gutter lg:px-gutter-lg flex flex-col md:flex-row items-center justify-between gap-space-lg"><div class="flex items-center gap-space-md"><img alt="RearGuard Logo" class="h-6 w-auto opacity-70 object-contain" src="images/logo.png"><span class="font-label-code-sm text-label-code-sm text-on-surface-variant">RearGuard Project · PoC</span></div></div></footer>
+</body></html>
