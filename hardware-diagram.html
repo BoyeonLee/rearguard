@@ -1,0 +1,642 @@
+<!DOCTYPE html><html class="dark" lang="ko" style=""><head><meta charset="utf-8"><meta content="width=device-width, initial-scale=1.0" name="viewport"><meta content="web_standard" name="shell-type"><title>하드웨어 설계 - RearGuard</title><link href="https://fonts.googleapis.com" rel="preconnect"><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet"><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"><style>@layer base{html,body{margin:0;padding:0;background-color:#0f131c;}html{scroll-behavior:smooth;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}[data-rg-hero] .rg-chip{position:absolute;left:50%;top:52px;transform:translateX(-50%);white-space:nowrap;transition:opacity .25s;padding:2px 8px;border-radius:4px;font-weight:700}[data-rg-hero] .rg-chip[data-tone="amber"]{background:#ee9800;color:#2a1700}[data-rg-hero] .rg-chip[data-tone="red"]{background:#ff5a52;color:#2a0003;box-shadow:0 0 16px rgba(255,90,82,.6)}[data-rg-hero] .rg-vig{box-shadow:inset 0 0 90px 12px rgba(255,60,50,.55);opacity:0}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={"darkMode":"class","theme":{"extend":{"colors":{"primary-fixed":"#acedff","on-primary-fixed-variant":"#004e5c","primary":"#4cd7f6","primary-container":"#06b6d4","primary-fixed-dim":"#4cd7f6","tertiary-fixed":"#ffdad7","on-primary-container":"#00424f","on-secondary-fixed":"#2a1700","inverse-surface":"#dfe2ee","on-tertiary":"#68000a","secondary":"#ffb95f","surface-dim":"#0f131c","on-tertiary-container":"#7e000f","secondary-fixed":"#ffddb8","surface-tint":"#4cd7f6","inverse-on-surface":"#2c3039","on-surface":"#dfe2ee","on-error-container":"#ffdad6","surface-container-lowest":"#0a0e16","on-surface-variant":"#bcc9cd","secondary-container":"#ee9800","on-background":"#dfe2ee","tertiary":"#ffb3ad","tertiary-fixed-dim":"#ffb3ad","inverse-primary":"#00687a","surface-container-highest":"#31353e","surface-container":"#1c2028","on-primary-fixed":"#001f26","on-error":"#690005","surface-variant":"#31353e","surface":"#0f131c","surface-bright":"#353942","on-secondary":"#472a00","surface-container-high":"#262a33","on-primary":"#003640","outline-variant":"#3d494c","on-tertiary-fixed":"#410004","error":"#ffb4ab","tertiary-container":"#ff817a","surface-container-low":"#181c24","error-container":"#93000a","on-secondary-container":"#5b3800","on-tertiary-fixed-variant":"#930013","secondary-fixed-dim":"#ffb95f","on-secondary-fixed-variant":"#653e00","outline":"#869397","background":"#0f131c"},"borderRadius":{"DEFAULT":"0.125rem","lg":"0.25rem","xl":"0.5rem","full":"0.75rem"},"spacing":{"gutter-sm":"1rem","margin-md":"3rem","space-xl":"2.5rem","margin-lg":"5rem","gutter-lg":"2rem","space-lg":"1.5rem","gutter":"1.5rem","space-xs":"0.25rem","space-md":"1rem","space-sm":"0.5rem","margin":"1.5rem"},"fontFamily":{"headline-lg-mobile":["Inter"],"headline-md":["Inter"],"body-sm":["Inter"],"headline-lg":["Inter"],"headline-sm":["Inter"],"label-code-md":["JetBrains Mono"],"display":["Inter"],"label-code-lg":["JetBrains Mono"],"body-md":["Inter"],"body-lg":["Inter"],"label-code-sm":["JetBrains Mono"],"display-mobile":["Inter"]},"fontSize":{"headline-lg-mobile":["1.75rem",{"lineHeight":"1.25","letterSpacing":"-0.02em","fontWeight":"600"}],"headline-md":["1.75rem",{"lineHeight":"1.3","letterSpacing":"-0.02em","fontWeight":"600"}],"body-sm":["0.8125rem",{"lineHeight":"1.5","letterSpacing":"0","fontWeight":"400"}],"headline-lg":["2.5rem",{"lineHeight":"1.2","letterSpacing":"-0.025em","fontWeight":"600"}],"headline-sm":["1.25rem",{"lineHeight":"1.4","letterSpacing":"-0.015em","fontWeight":"600"}],"label-code-md":["0.8125rem",{"lineHeight":"1.4","letterSpacing":"0","fontWeight":"500"}],"display":["3.75rem",{"lineHeight":"1.1","letterSpacing":"-0.03em","fontWeight":"700"}],"label-code-lg":["1rem",{"lineHeight":"1.5","letterSpacing":"-0.01em","fontWeight":"500"}],"body-md":["0.9375rem",{"lineHeight":"1.6","letterSpacing":"-0.005em","fontWeight":"400"}],"body-lg":["1.125rem",{"lineHeight":"1.6","letterSpacing":"-0.01em","fontWeight":"400"}],"label-code-sm":["0.6875rem",{"lineHeight":"1.4","letterSpacing":"0.04em","fontWeight":"500"}],"display-mobile":["2.25rem",{"lineHeight":"1.2","letterSpacing":"-0.02em","fontWeight":"700"}]}}}};</script><style>
+  .hw { --panel:#0f1720; --line:#1e2a36; --text:#e6edf3; --muted:#8b97a6; --cyan:#2dd4d4; --cyan-line:#2aa7a7;
+        --purple:#a78bfa; --green:#4ade80; --amber:#f0a31e; --amber-line:#b07a25; }
+  .hw .board { background:var(--panel); border:1px solid var(--line); border-radius:14px; padding:8px; overflow-x:auto; }
+  .hw .board svg { display:block; width:100%; min-width:720px; height:auto; }
+  .hw .node rect { fill:var(--panel); stroke-width:2.5; }
+  .hw .node .t { fill:var(--text); font-size:22px; font-weight:700; text-anchor:middle; }
+  .hw .node .s { fill:var(--muted); font-size:14px; text-anchor:middle; font-family:"JetBrains Mono",Consolas,monospace; }
+  .hw .c rect { stroke:var(--cyan); } .hw .p rect { stroke:var(--purple); } .hw .g rect { stroke:var(--green); }
+  .hw .sig { stroke:var(--cyan-line); stroke-width:3; stroke-dasharray:8 7; fill:none; }
+  .hw .pow { stroke:var(--amber-line); stroke-width:4.5; fill:none; }
+  .hw .lbl { font-size:15px; text-anchor:middle; font-family:"JetBrains Mono",Consolas,monospace;
+             paint-order:stroke; stroke:var(--panel); stroke-width:6px; stroke-linejoin:round; }
+  .hw .lbl.sigc { fill:var(--cyan); font-weight:700; } .hw .lbl.powc { fill:var(--amber); font-weight:700; }
+  .hw .lbl.sub { fill:var(--muted); font-weight:400; }
+  .hw .legend text { fill:var(--muted); font-size:15px; }
+  .hw .zone { fill:none; stroke:#3a4756; stroke-width:2; stroke-dasharray:4 6; }
+  .hw .zone-t { fill:var(--muted); font-size:16px; font-weight:700; }
+  .hw .phone rect.body { fill:#0c141c; stroke:var(--cyan); stroke-width:3; }
+  .hw .table-wrap { overflow-x:auto; }
+  .hw table { width:100%; border-collapse:collapse; font-size:14px; min-width:640px; }
+  .hw th, .hw td { border-bottom:1px solid #3d494c; padding:9px 10px; text-align:left; vertical-align:top; }
+  .hw th { color:#bcc9cd; font-weight:600; }
+  .hw td code { color:#4cd7f6; font-family:"JetBrains Mono",Consolas,monospace; }
+  .hw .tag { display:inline-block; padding:1px 8px; border-radius:999px; font-size:12px; border:1px solid; white-space:nowrap; }
+  .hw .tag.sig { border-color:var(--cyan-line); color:var(--cyan); stroke:none; }
+  .hw .tag.pow { border-color:var(--amber-line); color:var(--amber); stroke:none; }
+  .hw .diff td:first-child { color:#bcc9cd; }
+
+  /* 위험도별 경고 동작 데모 */
+  .demo { --surface:#181c24; --ink:#dfe2ee; --muted:#bcc9cd; --line:#3d494c; --frame:#C9D2D8; --unit:#56656F; --accent:#4cd7f6; }
+  .demo .stage { background:var(--surface); border:1px solid var(--line); border-radius:14px; padding:12px; }
+  .demo .stage svg { display:block; width:100%; height:auto; }
+  .demo .levels { display:grid; grid-template-columns:repeat(4,1fr); margin-top:20px; border:1px solid var(--line); border-radius:10px; overflow:hidden; }
+  .demo .levels button { font:inherit; border:0; border-left:1px solid var(--line); background:var(--surface); color:var(--ink);
+                         padding:12px 4px; cursor:pointer; display:flex; flex-direction:column; align-items:center; gap:2px; }
+  .demo .levels button:first-child { border-left:0; }
+  .demo .levels .num { font-size:1.4rem; font-weight:700; line-height:1; }
+  .demo .levels .name { font-size:.85rem; color:var(--muted); }
+  .demo .levels button[aria-pressed="true"] { background:#06b6d4; color:#001f26; }
+  .demo .levels button[aria-pressed="true"] .name { color:#00424f; }
+  .demo button:focus-visible { outline:3px solid var(--accent); outline-offset:-3px; }
+  .demo .toggles { display:flex; flex-wrap:wrap; gap:16px 24px; margin-top:16px; }
+  .demo .toggles label { display:inline-flex; align-items:center; gap:8px; cursor:pointer; color:var(--muted); }
+  .demo .toggles input { width:18px; height:18px; accent-color:#06b6d4; }
+  .demo .state { display:grid; grid-template-columns:1fr 1fr; gap:24px; margin-top:24px; padding-top:20px; border-top:1px solid var(--line); }
+  .demo .state h3 { font-size:1rem; font-weight:600; margin:0 0 4px; color:var(--ink); }
+  .demo .state p { margin:0; color:var(--muted); }
+  @media (max-width:520px) { .demo .state { grid-template-columns:1fr; gap:16px; } .demo .levels .name { font-size:.75rem; } }
+</style></head><body class="bg-surface font-body-md text-on-surface antialiased selection:bg-primary-container selection:text-on-primary-container"><header class="fixed top-0 left-0 right-0 z-50 bg-surface-container-lowest/85 backdrop-blur-md border-b border-outline-variant/30 shadow-[0_1px_8px_rgba(0,0,0,0.4)]"><div class="h-16 w-full px-gutter-sm md:px-gutter lg:px-gutter-lg flex items-center justify-between gap-space-md"><div class="flex items-center gap-space-md shrink-0"><a class="flex items-center gap-space-sm" data-path="overview" href="index.html"><img alt="RearGuard Logo" class="h-8 w-auto object-contain" src="images/logo.png"><span class="font-headline-sm text-headline-sm tracking-tight text-on-surface font-semibold hidden sm:inline-block">RearGuard</span></a><div class="hidden sm:flex items-center gap-space-xs px-space-xs py-0.5 rounded-lg bg-surface-container border border-outline-variant/40 text-primary font-label-code-sm text-label-code-sm"><span class="w-1.5 h-1.5 rounded-full bg-primary animate-pulse"></span><span class="">PoC</span></div></div><nav class="hidden xl:flex items-center gap-space-lg" data-active-classes="text-primary font-semibold"><a class="font-body-md text-body-md text-on-surface-variant hover:text-on-surface transition-colors" data-path="products" href="index.html#product">제품</a><a class="font-body-md text-body-md text-on-surface-variant hover:text-on-surface transition-colors" data-path="how-it-works" href="index.html#mechanism">작동 방식</a><a class="font-body-md text-body-md text-on-surface-variant hover:text-on-surface transition-colors" data-path="architecture" href="index.html#architecture">기술 설계</a><a class="font-body-md text-body-md text-on-surface-variant hover:text-on-surface transition-colors" data-path="model" href="index.html#model">검출 모델</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-on-surface transition-colors" data-path="preprocessing" href="index.html#preprocessing">데이터 전처리</a><a class="font-body-md text-body-md text-on-surface-variant hover:text-on-surface transition-colors" data-path="validation" href="index.html#validation">검증</a><a class="font-body-md text-body-md text-on-surface-variant hover:text-on-surface transition-colors" data-path="dev-notes" href="index.html#devnotes">개발 노트</a><a class="font-body-md text-body-md text-primary font-semibold transition-colors" data-path="hardware" href="hardware-diagram.html">하드웨어</a><a class="font-body-md text-body-md text-on-surface-variant hover:text-on-surface transition-colors" data-path="docs" href="vision-review.html">추가문서</a></nav><div class="flex items-center gap-space-sm shrink-0"><a class="hidden md:flex items-center gap-space-xs px-space-md py-1.5 rounded-lg border border-outline-variant/60 bg-surface-container text-on-surface hover:bg-surface-container-high hover:text-primary transition-all font-label-code-sm text-label-code-sm" href="https://github.com" rel="noopener noreferrer" target="_blank"><span class="material-symbols-outlined text-[16px]">terminal</span><span class="">GitHub</span></a><a class="hidden sm:flex items-center gap-space-xs px-space-md py-1.5 rounded-lg bg-primary text-on-primary font-label-code-md text-label-code-md font-semibold shadow-[0_0_16px_rgba(6,182,212,0.3)] hover:bg-primary-fixed transition-all" href="index.html#demo"><span class="material-symbols-outlined text-[16px]">play_circle</span><span class="">Live Demo</span></a><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div><details class="xl:hidden relative"><summary class="list-none flex items-center justify-center p-space-xs rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container cursor-pointer"><span class="material-symbols-outlined text-[24px]">menu</span></summary><div class="absolute right-0 top-12 w-64 p-space-md bg-surface-container-low border border-outline-variant/50 rounded-xl shadow-2xl flex flex-col gap-space-sm"><a class="py-space-xs px-space-sm rounded text-on-surface-variant hover:bg-surface-container hover:text-on-surface font-body-sm text-body-sm transition-colors" data-path="products" href="index.html#product">제품</a><a class="py-space-xs px-space-sm rounded text-on-surface-variant hover:bg-surface-container hover:text-on-surface font-body-sm text-body-sm transition-colors" data-path="how-it-works" href="index.html#mechanism">작동 방식</a><a class="py-space-xs px-space-sm rounded text-on-surface-variant hover:bg-surface-container hover:text-on-surface font-body-sm text-body-sm transition-colors" data-path="architecture" href="index.html#architecture">기술 설계</a><a class="py-space-xs px-space-sm rounded text-on-surface-variant hover:bg-surface-container hover:text-on-surface font-body-sm text-body-sm transition-colors" data-path="model" href="index.html#model">검출 모델</a>
+<a class="py-space-xs px-space-sm rounded text-on-surface-variant hover:bg-surface-container hover:text-on-surface font-body-sm text-body-sm transition-colors" data-path="preprocessing" href="index.html#preprocessing">데이터 전처리</a><a class="py-space-xs px-space-sm rounded text-on-surface-variant hover:bg-surface-container hover:text-on-surface font-body-sm text-body-sm transition-colors" data-path="validation" href="index.html#validation">검증</a><a class="py-space-xs px-space-sm rounded text-on-surface-variant hover:bg-surface-container hover:text-on-surface font-body-sm text-body-sm transition-colors" data-path="dev-notes" href="index.html#devnotes">개발 노트</a><a class="py-space-xs px-space-sm rounded text-primary bg-surface-container font-body-sm text-body-sm font-semibold transition-colors" data-path="hardware" href="hardware-diagram.html">하드웨어</a><a class="py-space-xs px-space-sm rounded text-on-surface-variant hover:bg-surface-container hover:text-on-surface font-body-sm text-body-sm transition-colors" data-path="docs" href="vision-review.html">추가문서</a><div class="pt-space-xs mt-space-xs border-t border-outline-variant/30 flex flex-col gap-space-xs"><a class="flex items-center gap-space-xs py-space-xs px-space-sm text-on-surface-variant font-label-code-sm text-label-code-sm" href="https://github.com" target="_blank"><span class="material-symbols-outlined text-[16px]">terminal</span><span class="">GitHub Repo</span></a><a class="flex items-center justify-center py-space-xs px-space-sm rounded bg-primary text-on-primary font-label-code-sm text-label-code-sm font-semibold" href="index.html#demo"><span class="">Launch Live Demo</span></a></div></div></details></div></div></header><main class="w-full pt-16 bg-surface min-h-[calc(100vh-4rem)] relative"><div class="flex flex-col w-full text-on-surface">
+
+
+<!-- 개요 -->
+<section class="w-full py-space-xl lg:py-margin-lg bg-surface-container-lowest hw">
+<div class="w-full px-gutter-sm md:px-gutter lg:px-gutter-lg max-w-[1440px] mx-auto flex flex-col gap-space-lg">
+<a class="inline-flex items-center gap-space-xs self-start font-label-code-sm text-label-code-sm text-on-surface-variant hover:text-primary transition-colors" href="index.html#architecture"><span class="material-symbols-outlined text-[16px]">arrow_back</span><span class="">메인으로</span></a>
+<div class="flex flex-col gap-space-xs">
+<span class="font-label-code-sm text-label-code-sm text-primary tracking-wider uppercase">하드웨어 · Hardware Design</span>
+<h1 class="font-display-mobile text-display-mobile md:font-headline-lg md:text-headline-lg text-on-surface">RearGuard 하드웨어 설계</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-3xl">RearGuard 경고 유닛을 이루는 부품과 부품 사이의 연결·통신 방식, 위험도별 경고 동작을 정리했습니다. 두 경고 유닛은 같은 XIAO ESP32-C3와 1셀 Li-Po 배터리로 통일하고, GPIO가 감당할 수 없는 부하(파워 LED 300mA, 부저 40mA)는 트랜지스터로 분리했습니다.</p>
+</div>
+<div class="table-wrap">
+<table>
+<thead><tr><th>부품</th><th>위치</th><th>동작 전압</th><th>전류 (평균 / 피크)</th><th>통신·제어 방식</th></tr></thead>
+<tbody>
+<tr><td>Seeed Studio XIAO ESP32-C3 ×2</td><td>후방 · 핸들</td><td>3.7V 입력 / 3.3V 로직</td><td>약 60mA / 130mA</td><td>BLE 5.0, USB-C</td></tr>
+<tr><td>1W 빨강 파워 LED</td><td>후방</td><td>Vf 약 2.0~2.6V</td><td>약 90mA / 300mA (상한)</td><td>PWM → N-MOSFET</td></tr>
+<tr><td>AO3400A N-MOSFET (로직 레벨)</td><td>후방</td><td>Vgs(th) 0.65~1.45V</td><td>LED 전류 통과</td><td>GPIO PWM 게이트 구동</td></tr>
+<tr><td>WS2812B RGB LED</td><td>핸들</td><td>3.5~5.3V (배터리 직결)</td><td>약 25mA / 40mA</td><td>단일선 800kHz 직렬 (RMT)</td></tr>
+<tr><td>수동형 전자 부저 (2.7kHz)</td><td>핸들</td><td>3.3V</td><td>0 / 약 40mA</td><td>PWM 구형파 → S8050 NPN</td></tr>
+<tr><td>Li-Po 1셀 (1000mAh / 500mAh)</td><td>후방 / 핸들</td><td>3.0~4.2V</td><td>피크 430mA / 210mA</td><td>ADC로 전압 감시</td></tr>
+</tbody>
+</table>
+</div>
+<p class="font-body-sm text-body-sm text-outline">전류 값은 설계 가정값이며 조립 후 실측으로 갱신합니다. 자세한 근거는 report/hardware_parts_design.md에 있습니다.</p>
+</div>
+</section>
+
+<!-- PoC 구성 -->
+<section class="w-full py-space-xl lg:py-margin-lg bg-surface hw">
+<div class="w-full px-gutter-sm md:px-gutter lg:px-gutter-lg max-w-[1440px] mx-auto flex flex-col gap-space-lg">
+<div class="flex flex-col gap-space-xs">
+<span class="font-label-code-sm text-label-code-sm text-primary tracking-wider uppercase">Diagram 1 · PoC</span>
+<h2 class="font-headline-md text-headline-md text-on-surface">① PoC 구성 (노트북)</h2>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-3xl">노트북이 녹화 영상으로 차량 검출·추적·위험도 판단을 하고, BLE로 후방 유닛과 핸들 유닛(XIAO ESP32-C3)에 위험도 1바이트를 보냅니다. 후방 유닛은 AO3400A MOSFET으로 1W 빨강 LED를, 핸들 유닛은 WS2812B RGB LED와 S8050으로 부저를 구동합니다.</p>
+</div>
+<div class="board">
+<svg viewBox="0 0 1600 760" role="img" aria-label="RearGuard 하드웨어 블록 다이어그램">
+    <defs>
+      <marker id="arw" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+        <path d="M0,0 L10,5 L0,10 z" fill="#2aa7a7"/>
+      </marker>
+    </defs>
+
+    <!-- 범례 -->
+    <g class="legend">
+      <line x1="34" y1="40" x2="84" y2="40" class="sig"/>
+      <text x="94" y="45">통신 · 제어 신호 (화살표 = 방향)</text>
+      <line x1="34" y1="70" x2="84" y2="70" class="pow"/>
+      <text x="94" y="75">전원 · 부하 전류</text>
+      <rect x="360" y="30" width="18" height="18" rx="4" fill="none" stroke="#2dd4d4" stroke-width="2.5"/>
+      <text x="386" y="45">연산 · 제어</text>
+      <rect x="490" y="30" width="18" height="18" rx="4" fill="none" stroke="#4ade80" stroke-width="2.5"/>
+      <text x="516" y="45">드라이버</text>
+      <rect x="610" y="30" width="18" height="18" rx="4" fill="none" stroke="#a78bfa" stroke-width="2.5"/>
+      <text x="636" y="45">출력 장치</text>
+    </g>
+
+    <!-- ===== 연결선 (노드 아래에 그림) ===== -->
+
+    <!-- iPhone → 노트북 -->
+    <line x1="250" y1="380" x2="388" y2="380" class="sig" marker-end="url(#arw)"/>
+    <text x="320" y="364" class="lbl sigc">파일 전송</text>
+    <text x="320" y="404" class="lbl sub">MP4 · JPG</text>
+
+    <!-- 노트북 → 후방 ESP32 -->
+    <line x1="650" y1="350" x2="778" y2="248" class="sig" marker-end="url(#arw)"/>
+    <text x="714" y="292" class="lbl sigc">BLE 5.0 GATT</text>
+    <text x="714" y="310" class="lbl sub">위험도 1바이트</text>
+
+    <!-- 노트북 → 핸들 ESP32 -->
+    <line x1="650" y1="410" x2="778" y2="542" class="sig" marker-end="url(#arw)"/>
+    <text x="714" y="468" class="lbl sigc">BLE 5.0 GATT</text>
+    <text x="714" y="486" class="lbl sub">200ms 주기 재전송</text>
+
+    <!-- 후방: ESP32 → MOSFET (PWM) -->
+    <line x1="1020" y1="230" x2="1098" y2="230" class="sig" marker-end="url(#arw)"/>
+    <text x="1060" y="216" class="lbl sigc">PWM</text>
+    <text x="1060" y="252" class="lbl sub">5kHz</text>
+
+    <!-- 후방: MOSFET ↔ LED (부하 전류) -->
+    <line x1="1280" y1="230" x2="1360" y2="230" class="pow"/>
+    <text x="1320" y="216" class="lbl powc">≤300mA</text>
+
+    <!-- 후방: 전원 VBAT → LED 애노드 -->
+    <path d="M900,185 C900,105 1460,105 1460,185" class="pow"/>
+    <text x="1180" y="118" class="lbl powc">VBAT 3.7~4.2V → LED 애노드</text>
+
+    <!-- 핸들: ESP32 → WS2812B (데이터) -->
+    <line x1="1020" y1="530" x2="1238" y2="452" class="sig" marker-end="url(#arw)"/>
+    <text x="1100" y="470" class="lbl sigc">단일선 800kHz</text>
+    <text x="1100" y="488" class="lbl sub">RMT · 3.3V 데이터</text>
+
+    <!-- 핸들: 전원 VBAT → WS2812B -->
+    <line x1="1020" y1="556" x2="1240" y2="478" class="pow"/>
+    <text x="1175" y="545" class="lbl powc">VBAT 3.7V</text>
+
+    <!-- 핸들: ESP32 → S8050 (PWM) -->
+    <line x1="1020" y1="592" x2="1098" y2="648" class="sig" marker-end="url(#arw)"/>
+    <text x="1040" y="652" class="lbl sigc">PWM</text>
+    <text x="1040" y="670" class="lbl sub">2.7kHz</text>
+
+    <!-- 핸들: S8050 ↔ 부저 -->
+    <line x1="1280" y1="660" x2="1360" y2="660" class="pow"/>
+    <text x="1320" y="646" class="lbl powc">3.3V</text>
+    <text x="1320" y="682" class="lbl sub">≤40mA</text>
+
+    <!-- 택트 스위치 → 핸들 ESP32 -->
+    <line x1="640" y1="632" x2="778" y2="592" class="sig" marker-end="url(#arw)"/>
+    <text x="705" y="596" class="lbl sigc">GPIO 입력</text>
+    <text x="715" y="648" class="lbl sub">내부 풀업</text>
+
+    <!-- ===== 노드 ===== -->
+
+    <g class="node c">
+      <rect x="30" y="335" width="220" height="90" rx="10"/>
+      <text x="140" y="374" class="t">iPhone</text>
+      <text x="140" y="400" class="s">테스트 촬영 · 삼각대</text>
+    </g>
+
+    <g class="node c">
+      <rect x="390" y="325" width="260" height="110" rx="10"/>
+      <text x="520" y="366" class="t">노트북</text>
+      <text x="520" y="392" class="s">YOLO26n · 추적 · 위험도</text>
+      <text x="520" y="412" class="s">Python bleak · CPU 추론</text>
+    </g>
+
+    <g class="node c">
+      <rect x="780" y="185" width="240" height="90" rx="10"/>
+      <text x="900" y="224" class="t">XIAO ESP32-C3</text>
+      <text x="900" y="250" class="s">후방 유닛 · 3.3V 로직</text>
+    </g>
+
+    <g class="node c">
+      <rect x="780" y="515" width="240" height="90" rx="10"/>
+      <text x="900" y="554" class="t">XIAO ESP32-C3</text>
+      <text x="900" y="580" class="s">핸들 유닛 · 3.3V 로직</text>
+    </g>
+
+    <g class="node g">
+      <rect x="1100" y="185" width="180" height="90" rx="10"/>
+      <text x="1190" y="224" class="t">AO3400A</text>
+      <text x="1190" y="250" class="s">N-MOSFET 드라이버</text>
+    </g>
+
+    <g class="node p">
+      <rect x="1360" y="185" width="200" height="90" rx="10"/>
+      <text x="1460" y="224" class="t">1W 빨강 LED</text>
+      <text x="1460" y="250" class="s">고휘도 후방 경고등</text>
+    </g>
+
+    <g class="node p">
+      <rect x="1240" y="395" width="220" height="90" rx="10"/>
+      <text x="1350" y="434" class="t">WS2812B</text>
+      <text x="1350" y="460" class="s">RGB · 노랑/주황/빨강</text>
+    </g>
+
+    <g class="node g">
+      <rect x="1100" y="615" width="180" height="90" rx="10"/>
+      <text x="1190" y="654" class="t">S8050</text>
+      <text x="1190" y="680" class="s">NPN 드라이버</text>
+    </g>
+
+    <g class="node p">
+      <rect x="1360" y="615" width="200" height="90" rx="10"/>
+      <text x="1460" y="654" class="t">수동형 부저</text>
+      <text x="1460" y="680" class="s">비프 · 연속음</text>
+    </g>
+
+    <g class="node c">
+      <rect x="400" y="600" width="240" height="80" rx="10"/>
+      <text x="520" y="636" class="t">택트 스위치</text>
+      <text x="520" y="660" class="s">선택 · 음소거/재연결</text>
+    </g>
+
+    <text x="800" y="742" text-anchor="middle" fill="#8b97a6" font-size="14">모든 GND 공통 연결 · 배터리(Li-Po)와 전압 감시 회로는 도식에서 생략</text>
+  </svg>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">연결별 통신 방식</h3>
+<div class="table-wrap">
+  <table>
+    <thead>
+      <tr><th>구간</th><th>종류</th><th>통신 방식</th><th>전압 · 전류</th><th>속도 · 주기</th><th>비고</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>iPhone → 노트북</td><td><span class="tag sig">데이터</span></td><td>파일 전송</td><td>–</td><td>실시간 아님</td><td>녹화 영상·사진 (60·70·80cm 촬영)</td></tr>
+      <tr><td>노트북 → 후방 ESP32</td><td><span class="tag sig">신호</span></td><td>BLE 5.0 GATT</td><td>무선 2.4GHz</td><td>연결 간격 7.5~30ms</td><td>위험도 1바이트, 응답 없는 쓰기. 장치명 <code>RG-REAR</code></td></tr>
+      <tr><td>노트북 → 핸들 ESP32</td><td><span class="tag sig">신호</span></td><td>BLE 5.0 GATT</td><td>무선 2.4GHz</td><td>200ms마다 재전송</td><td>장치명 <code>RG-HANDLE</code>. 1초 수신 없으면 연결 끊김 처리</td></tr>
+      <tr><td>후방 ESP32 → AO3400A</td><td><span class="tag sig">신호</span></td><td>PWM (LEDC)</td><td>3.3V 게이트</td><td>5kHz, 8비트 듀티</td><td>GPIO10, 100Ω 직렬 + 100kΩ 풀다운</td></tr>
+      <tr><td>AO3400A ↔ 1W LED</td><td><span class="tag pow">전원</span></td><td>저측 스위칭</td><td>VBAT 3.7~4.2V, 최대 300mA</td><td>2~3Hz 점멸</td><td>6.8Ω 2W 전류 제한 저항</td></tr>
+      <tr><td>핸들 ESP32 → WS2812B</td><td><span class="tag sig">신호</span></td><td>단일선 NZR 직렬 (RMT)</td><td>3.3V 데이터</td><td>800kbps, 픽셀당 24비트</td><td>GPIO10, 330Ω 직렬. VDD는 VBAT (최대 약 40mA)</td></tr>
+      <tr><td>핸들 ESP32 → S8050</td><td><span class="tag sig">신호</span></td><td>PWM 구형파 (LEDC)</td><td>3.3V 베이스</td><td>2.7kHz</td><td>GPIO6, 1kΩ 베이스 저항</td></tr>
+      <tr><td>S8050 ↔ 부저</td><td><span class="tag pow">전원</span></td><td>저측 스위칭</td><td>3.3V, 최대 40mA</td><td>비프 100ms / 연속음</td><td>1N4148 플라이백 다이오드</td></tr>
+      <tr><td>택트 스위치 → 핸들 ESP32</td><td><span class="tag sig">신호</span></td><td>디지털 입력</td><td>3.3V (내부 풀업)</td><td>–</td><td>GPIO4, 선택 부품</td></tr>
+      <tr><td>노트북 ↔ ESP32 (개발용)</td><td><span class="tag sig">데이터</span></td><td>USB-C (USB Serial/JTAG)</td><td>5V USB</td><td>–</td><td>펌웨어 업로드·시리얼 로그·충전. 도식에서 생략</td></tr>
+    </tbody>
+  </table>
+  </div>
+</div>
+</section>
+
+<!-- 출시 구상 -->
+<section class="w-full py-space-xl lg:py-margin-lg bg-surface-container-lowest hw">
+<div class="w-full px-gutter-sm md:px-gutter lg:px-gutter-lg max-w-[1440px] mx-auto flex flex-col gap-space-lg">
+<div class="flex flex-col gap-space-xs">
+<span class="font-label-code-sm text-label-code-sm text-primary tracking-wider uppercase">Diagram 2 · Product Concept</span>
+<h2 class="font-headline-md text-headline-md text-on-surface">② 출시 구상 (스마트폰 앱)</h2>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-3xl">실제 출시는 스마트폰 앱 형태로 구상합니다. 라이더의 스마트폰을 시트포스트 마운트에 후방으로 거치해 카메라 겸 연산 장치로 쓰고, 후방 LED는 마운트에 일체형으로 넣습니다. 폰 후면 카메라와 IMU, NPU로 온디바이스 추론하고 BLE로 후방 LED와 핸들 유닛에 경고를 보냅니다. (PRD 1.2, 개발 범위 밖)</p>
+</div>
+<div class="board">
+<svg viewBox="0 0 1600 770" role="img" aria-label="RearGuard 출시 구상 하드웨어 블록 다이어그램">
+    <defs>
+      <marker id="arw2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+        <path d="M0,0 L10,5 L0,10 z" fill="#2aa7a7"/>
+      </marker>
+    </defs>
+
+    <!-- 범례 -->
+    <g class="legend">
+      <line x1="34" y1="40" x2="84" y2="40" class="sig"/>
+      <text x="94" y="45">통신 · 제어 신호 (화살표 = 방향)</text>
+      <line x1="34" y1="68" x2="84" y2="68" class="pow"/>
+      <text x="94" y="73">전원 · 부하 전류</text>
+      <rect x="360" y="30" width="18" height="18" rx="4" fill="none" stroke="#2dd4d4" stroke-width="2.5"/>
+      <text x="386" y="45">연산 · 센서 · 제어</text>
+      <rect x="530" y="30" width="18" height="18" rx="4" fill="none" stroke="#4ade80" stroke-width="2.5"/>
+      <text x="556" y="45">드라이버</text>
+      <rect x="650" y="30" width="18" height="18" rx="4" fill="none" stroke="#a78bfa" stroke-width="2.5"/>
+      <text x="676" y="45">출력 장치</text>
+      <line x1="800" y1="40" x2="850" y2="40" class="zone"/>
+      <text x="860" y="45">장착 위치</text>
+    </g>
+
+    <!-- 장착 위치 구역 -->
+    <rect x="20" y="120" width="1110" height="600" rx="16" class="zone"/>
+    <text x="42" y="150" class="zone-t">시트포스트 일체형 마운트 (스마트폰 + 후방 LED)</text>
+    <rect x="1160" y="120" width="420" height="600" rx="16" class="zone"/>
+    <text x="1182" y="150" class="zone-t">핸들바 유닛</text>
+
+    <!-- 스마트폰 외곽 -->
+    <g class="phone">
+      <rect class="body" x="45" y="170" width="680" height="525" rx="22"/>
+      <text x="385" y="208" text-anchor="middle" fill="#e6edf3" font-size="24" font-weight="700">스마트폰</text>
+      <text x="385" y="232" text-anchor="middle" fill="#8b97a6" font-size="14" font-family="Consolas, monospace">라이더 보유 기기 · 온디바이스 추론</text>
+    </g>
+
+    <!-- ===== 연결선 ===== -->
+
+    <!-- 폰 내부: 카메라 → 앱 -->
+    <line x1="285" y1="320" x2="388" y2="362" class="sig" marker-end="url(#arw2)"/>
+    <text x="340" y="296" class="lbl sigc">카메라 API</text>
+    <text x="340" y="314" class="lbl sub">내부 MIPI CSI</text>
+
+    <!-- 폰 내부: IMU → 앱 -->
+    <line x1="285" y1="565" x2="388" y2="412" class="sig" marker-end="url(#arw2)"/>
+    <text x="300" y="470" class="lbl sigc">센서 API</text>
+    <text x="300" y="488" class="lbl sub">장착 각도</text>
+
+    <!-- 폰 내부: 앱 ↔ NPU -->
+    <line x1="530" y1="437" x2="530" y2="545" class="sig" marker-start="url(#arw2)" marker-end="url(#arw2)"/>
+    <text x="615" y="487" class="lbl sigc">Core ML · LiteRT</text>
+    <text x="615" y="505" class="lbl sub">온디바이스 추론</text>
+
+    <!-- 앱 → 후방 ESP32 (BLE) -->
+    <line x1="670" y1="372" x2="818" y2="325" class="sig" marker-end="url(#arw2)"/>
+    <text x="778" y="386" class="lbl sigc">BLE 5.0 GATT</text>
+    <text x="778" y="404" class="lbl sub">위험도 1바이트</text>
+
+    <!-- 앱 → 핸들 ESP32 (BLE, 위로 돌아감) -->
+    <path d="M560,325 L560,95 L1370,95 L1370,275" class="sig" marker-end="url(#arw2)"/>
+    <text x="965" y="86" class="lbl sigc">BLE 5.0 GATT · 위험도 1바이트 · 200ms 재전송</text>
+
+    <!-- 후방: ESP32 → MOSFET -->
+    <line x1="935" y1="363" x2="935" y2="425" class="sig" marker-end="url(#arw2)"/>
+    <text x="992" y="390" class="lbl sigc">PWM</text>
+    <text x="992" y="408" class="lbl sub">5kHz</text>
+
+    <!-- 후방: MOSFET ↔ LED -->
+    <line x1="935" y1="513" x2="935" y2="577" class="pow"/>
+    <text x="992" y="550" class="lbl powc">≤300mA</text>
+
+    <!-- 후방: VBAT → LED -->
+    <path d="M1050,320 C1105,320 1105,620 1045,620" class="pow"/>
+    <text x="1080" y="470" class="lbl powc">VBAT</text>
+
+    <!-- 핸들: ESP32 → WS2812B 데이터 -->
+    <line x1="1335" y1="363" x2="1290" y2="475" class="sig" marker-end="url(#arw2)"/>
+    <text x="1352" y="408" class="lbl sigc">단일선</text>
+    <text x="1352" y="426" class="lbl sub">800kHz</text>
+
+    <!-- 핸들: VBAT → WS2812B -->
+    <line x1="1300" y1="363" x2="1255" y2="477" class="pow"/>
+    <text x="1232" y="410" class="lbl powc">VBAT</text>
+
+    <!-- 핸들: ESP32 → S8050 -->
+    <line x1="1440" y1="363" x2="1475" y2="425" class="sig" marker-end="url(#arw2)"/>
+    <text x="1530" y="388" class="lbl sigc">PWM</text>
+    <text x="1530" y="406" class="lbl sub">2.7kHz</text>
+
+    <!-- 핸들: S8050 ↔ 부저 -->
+    <line x1="1480" y1="513" x2="1480" y2="577" class="pow"/>
+    <text x="1532" y="550" class="lbl powc">≤40mA</text>
+
+    <!-- ===== 노드 ===== -->
+
+    <g class="node c">
+      <rect x="65" y="277" width="220" height="86" rx="10"/>
+      <text x="175" y="315" class="t">후면 카메라</text>
+      <text x="175" y="340" class="s">1080p · 30fps</text>
+    </g>
+
+    <g class="node c">
+      <rect x="65" y="527" width="220" height="86" rx="10"/>
+      <text x="175" y="565" class="t">IMU</text>
+      <text x="175" y="590" class="s">가속도 · 자이로</text>
+    </g>
+
+    <g class="node c">
+      <rect x="390" y="325" width="280" height="112" rx="10"/>
+      <text x="530" y="365" class="t">RearGuard 앱</text>
+      <text x="530" y="391" class="s">추적 · 거리 · TTC · 위험도</text>
+      <text x="530" y="411" class="s">BLE Central</text>
+    </g>
+
+    <g class="node c">
+      <rect x="410" y="547" width="240" height="86" rx="10"/>
+      <text x="530" y="585" class="t">NPU / GPU</text>
+      <text x="530" y="610" class="s">YOLO26n 검출</text>
+    </g>
+
+    <g class="node c">
+      <rect x="820" y="277" width="230" height="86" rx="10"/>
+      <text x="935" y="315" class="t">XIAO ESP32-C3</text>
+      <text x="935" y="340" class="s">후방 LED 제어</text>
+    </g>
+
+    <g class="node g">
+      <rect x="835" y="427" width="200" height="86" rx="10"/>
+      <text x="935" y="465" class="t">AO3400A</text>
+      <text x="935" y="490" class="s">N-MOSFET</text>
+    </g>
+
+    <g class="node p">
+      <rect x="825" y="577" width="220" height="86" rx="10"/>
+      <text x="935" y="615" class="t">1W 빨강 LED</text>
+      <text x="935" y="640" class="s">일체형 후방등</text>
+    </g>
+
+    <g class="node c">
+      <rect x="1255" y="277" width="230" height="86" rx="10"/>
+      <text x="1370" y="315" class="t">XIAO ESP32-C3</text>
+      <text x="1370" y="340" class="s">핸들 유닛</text>
+    </g>
+
+    <g class="node p">
+      <rect x="1180" y="477" width="170" height="86" rx="10"/>
+      <text x="1265" y="515" class="t">WS2812B</text>
+      <text x="1265" y="540" class="s">RGB LED</text>
+    </g>
+
+    <g class="node g">
+      <rect x="1405" y="427" width="150" height="86" rx="10"/>
+      <text x="1480" y="465" class="t">S8050</text>
+      <text x="1480" y="490" class="s">NPN</text>
+    </g>
+
+    <g class="node p">
+      <rect x="1405" y="577" width="150" height="86" rx="10"/>
+      <text x="1480" y="615" class="t">부저</text>
+      <text x="1480" y="640" class="s">비프 · 연속음</text>
+    </g>
+
+    <text x="800" y="752" text-anchor="middle" fill="#8b97a6" font-size="14">모든 GND 공통 연결 · 마운트·핸들 유닛의 배터리(Li-Po)와 충전 회로는 도식에서 생략</text>
+  </svg>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">PoC와 달라지는 점</h3>
+<div class="table-wrap">
+  <table class="diff">
+    <thead>
+      <tr><th>항목</th><th>① PoC (노트북)</th><th>② 출시 구상 (스마트폰 앱)</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>영상 입력</td><td>iPhone 녹화 파일 → 노트북 (파일 전송)</td><td>폰 후면 카메라 실시간 (카메라 API, 내부 MIPI CSI)</td></tr>
+      <tr><td>추론 장치</td><td>노트북 CPU (ONNX / OpenVINO)</td><td>폰 NPU·GPU (iOS Core ML / Android LiteRT)</td></tr>
+      <tr><td>장착 각도</td><td>삼각대 설정값 직접 입력</td><td>폰 IMU로 자동 측정 (센서 API), 높이만 1회 입력</td></tr>
+      <tr><td>BLE 송신</td><td>Python <code>bleak</code></td><td>앱의 BLE Central (iOS Core Bluetooth / Android BLE API)</td></tr>
+      <tr><td>후방 LED</td><td>별도 후방 유닛</td><td>마운트에 일체형으로 내장 (회로는 동일: ESP32-C3 + AO3400A + 1W LED)</td></tr>
+      <tr><td>핸들 유닛</td><td colspan="2">동일 (ESP32-C3 + WS2812B + S8050 + 부저)</td></tr>
+    </tbody>
+  </table>
+  </div>
+<p class="font-body-sm text-body-sm text-outline">후방 LED는 폰 배터리를 쓰지 않도록 마운트에 자체 배터리를 둡니다(1W LED 상시 점등은 폰 배터리 부담이 큼). 출시 구상은 PRD상 개발 범위 밖이므로 사양은 방향 제시용입니다.</p>
+</div>
+</section>
+
+<!-- 위험도별 경고 동작 -->
+<section class="w-full py-space-xl lg:py-margin-lg bg-surface hw">
+<div class="w-full px-gutter-sm md:px-gutter lg:px-gutter-lg max-w-[1440px] mx-auto flex flex-col gap-space-lg">
+<div class="flex flex-col gap-space-xs">
+<span class="font-label-code-sm text-label-code-sm text-primary tracking-wider uppercase">Interactive · Warning Behavior</span>
+<h2 class="font-headline-md text-headline-md text-on-surface">위험도별 경고 동작</h2>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-3xl">뒤에서 차가 다가오는 위험도(0~3)에 따라 후방 유닛과 핸들 유닛이 어떻게 반응하는지 보여줍니다. 단계를 눌러 바꿔 보세요.</p>
+</div>
+<div class="demo w-full max-w-[760px]">
+  <div class="stage">
+    <svg viewBox="0 0 640 340" role="img" aria-labelledby="svgTitle">
+      <title id="svgTitle">자전거 옆모습. 안장 아래 후방 유닛과 핸들바의 핸들 유닛이 위험도에 따라 빛나고 소리를 냅니다.</title>
+      <defs>
+        <radialGradient id="rearGlow">
+          <stop offset="0%" stop-color="#FF3B30" stop-opacity="0.9"/>
+          <stop offset="100%" stop-color="#FF3B30" stop-opacity="0"/>
+        </radialGradient>
+        <radialGradient id="handleGlow">
+          <stop offset="0%" id="hgStop0" stop-color="#FFB400" stop-opacity="0.9"/>
+          <stop offset="100%" id="hgStop1" stop-color="#FFB400" stop-opacity="0"/>
+        </radialGradient>
+      </defs>
+      <line x1="20" y1="322" x2="620" y2="322" stroke="var(--line)" stroke-width="2"/>
+      <g fill="none" stroke="var(--frame)" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="150" cy="240" r="80"/>
+        <circle cx="490" cy="240" r="80"/>
+        <polyline points="150,240 300,240 272,112 150,240"/>
+        <polyline points="272,118 452,108 300,240"/>
+        <polyline points="452,108 466,160 490,240"/>
+        <line x1="272" y1="112" x2="266" y2="88"/>
+        <line x1="240" y1="86" x2="298" y2="86" stroke-width="9"/>
+        <polyline points="452,108 446,80 486,72"/>
+      </g>
+      <circle cx="150" cy="240" r="5" fill="var(--frame)"/>
+      <circle cx="490" cy="240" r="5" fill="var(--frame)"/>
+      <circle cx="300" cy="240" r="9" fill="none" stroke="var(--frame)" stroke-width="4"/>
+      <circle id="rearGlowCircle" cx="226" cy="114" r="70" fill="url(#rearGlow)" opacity="0"/>
+      <rect x="226" y="102" width="40" height="24" rx="5" fill="var(--unit)"/>
+      <circle id="rearLed" cx="226" cy="114" r="9" fill="#5A1A17" stroke="var(--unit)" stroke-width="3"/>
+      <text x="246" y="150" text-anchor="middle" font-size="13" fill="var(--muted)">후방 유닛</text>
+      <circle id="handleGlowCircle" cx="478" cy="58" r="46" fill="url(#handleGlow)" opacity="0"/>
+      <rect x="460" y="46" width="36" height="24" rx="5" fill="var(--unit)"/>
+      <rect id="handlePixel" x="470" y="50" width="16" height="16" rx="3" fill="#2A333A"/>
+      <g id="waves" fill="none" stroke="var(--ink)" stroke-width="3" stroke-linecap="round" opacity="0">
+        <path d="M506 46 q10 12 0 24"/>
+        <path d="M516 38 q18 20 0 40"/>
+        <path d="M526 30 q26 28 0 56"/>
+      </g>
+      <text x="478" y="26" text-anchor="middle" font-size="13" fill="var(--muted)">핸들 유닛</text>
+    </svg>
+  </div>
+
+  <div class="levels" role="group" aria-label="위험도 선택">
+    <button type="button" data-level="0" aria-pressed="true"><span class="num">0</span><span class="name">안전</span></button>
+    <button type="button" data-level="1" aria-pressed="false"><span class="num">1</span><span class="name">주의</span></button>
+    <button type="button" data-level="2" aria-pressed="false"><span class="num">2</span><span class="name">경고</span></button>
+    <button type="button" data-level="3" aria-pressed="false"><span class="num">3</span><span class="name">위험</span></button>
+  </div>
+
+  <div class="toggles">
+    <label><input type="checkbox" id="autoPlay" checked> 단계 자동으로 넘기기</label>
+    <label><input type="checkbox" id="sound"> 부저 소리 듣기</label>
+  </div>
+
+  <div class="state" aria-live="polite">
+    <div><h3>후방 유닛 (뒤차 운전자에게)</h3><p id="rearText"></p></div>
+    <div><h3>핸들 유닛 (라이더에게)</h3><p id="handleText"></p></div>
+  </div>
+</div>
+<div class="table-wrap">
+<table>
+<thead><tr><th>위험도</th><th>후방 유닛 (1W 빨강 LED)</th><th>핸들 유닛 (WS2812B + 부저)</th></tr></thead>
+<tbody>
+<tr><td>0 안전</td><td>30% 밝기로 계속 켜짐</td><td>꺼짐, 소리 없음</td></tr>
+<tr><td>1 주의</td><td>30% 밝기로 계속 켜짐</td><td>노랑 불빛, 소리 없음</td></tr>
+<tr><td>2 경고</td><td>70% 밝기로 1초에 2번 깜빡임</td><td>주황 불빛, 1초에 2번 짧은 삐 소리</td></tr>
+<tr><td>3 위험</td><td>최대 밝기로 1초에 3번 깜빡임</td><td>빨강 불빛, 끊기지 않는 경고음</td></tr>
+</tbody>
+</table>
+</div>
+<p class="font-body-sm text-body-sm text-outline">XIAO ESP32-C3 펌웨어와 같은 규칙으로 움직입니다. 후방 LED 밝기는 PWM 듀티, 핸들 LED는 WS2812B 색, 소리는 2.7kHz 부저입니다. BLE 연결이 1초 이상 끊기면 후방 LED는 기본 점등, 핸들 LED는 파랑 점멸로 바뀝니다.</p>
+</div>
+</section>
+
+</div></main>
+<footer class="w-full bg-surface-container-lowest border-t border-outline-variant/20 py-space-xl"><div class="w-full px-gutter-sm md:px-gutter lg:px-gutter-lg flex flex-col md:flex-row items-center justify-between gap-space-lg"><div class="flex items-center gap-space-md"><img alt="RearGuard Logo" class="h-6 w-auto opacity-70 object-contain" src="images/logo.png"><span class="font-label-code-sm text-label-code-sm text-on-surface-variant">RearGuard Project · PoC</span></div></div></footer>
+<script>
+// 위험도별 경고 동작 데모: 펌웨어(rearguard_combined.ino)와 같은 규칙
+(function () {
+  const LEVELS = [
+    { rear: { duty: 0.30, blinkMs: 0 },   handle: { rgb: [0, 0, 0],      bright: 0 },   beep: "off",
+      rearText: "30% 밝기로 계속 켜짐", handleText: "꺼짐, 소리 없음" },
+    { rear: { duty: 0.30, blinkMs: 0 },   handle: { rgb: [255, 180, 0],  bright: 0.5 }, beep: "off",
+      rearText: "30% 밝기로 계속 켜짐", handleText: "노랑 불빛, 소리 없음" },
+    { rear: { duty: 0.70, blinkMs: 500 }, handle: { rgb: [255, 80, 0],   bright: 0.5 }, beep: "short",
+      rearText: "70% 밝기로 1초에 2번 깜빡임", handleText: "주황 불빛, 1초에 2번 짧은 삐 소리" },
+    { rear: { duty: 1.00, blinkMs: 333 }, handle: { rgb: [255, 0, 0],    bright: 1 },   beep: "long",
+      rearText: "최대 밝기로 1초에 3번 깜빡임", handleText: "빨강 불빛, 끊기지 않는 경고음" },
+  ];
+
+  let level = 0;
+  const buttons = document.querySelectorAll(".demo .levels button");
+  const autoPlay = document.getElementById("autoPlay");
+  const soundBox = document.getElementById("sound");
+
+  const rearLed = document.getElementById("rearLed");
+  const rearGlow = document.getElementById("rearGlowCircle");
+  const handlePixel = document.getElementById("handlePixel");
+  const handleGlow = document.getElementById("handleGlowCircle");
+  const hgStop0 = document.getElementById("hgStop0");
+  const hgStop1 = document.getElementById("hgStop1");
+  const waves = document.getElementById("waves");
+
+  function setLevel(n) {
+    level = n;
+    buttons.forEach(b => b.setAttribute("aria-pressed", String(Number(b.dataset.level) === n)));
+    document.getElementById("rearText").textContent = LEVELS[n].rearText;
+    document.getElementById("handleText").textContent = LEVELS[n].handleText;
+    const [r, g, b] = LEVELS[n].handle.rgb;
+    const c = `rgb(${r},${g},${b})`;
+    hgStop0.setAttribute("stop-color", c);
+    hgStop1.setAttribute("stop-color", c);
+  }
+
+  buttons.forEach(b => b.addEventListener("click", () => {
+    autoPlay.checked = false;           // 직접 고르면 자동 넘기기 멈춤
+    setLevel(Number(b.dataset.level));
+  }));
+
+  // 자동으로 0 → 1 → 2 → 3 순서로 3초씩
+  setInterval(() => { if (autoPlay.checked) setLevel((level + 1) % 4); }, 3000);
+
+  // 부저 소리 (브라우저 Web Audio)
+  let audio = null, gain = null;
+  soundBox.addEventListener("change", () => {
+    if (soundBox.checked && !audio) {
+      audio = new (window.AudioContext || window.webkitAudioContext)();
+      const osc = audio.createOscillator();
+      gain = audio.createGain();
+      osc.type = "sine";
+      osc.frequency.value = 2700;
+      gain.gain.value = 0;
+      osc.connect(gain).connect(audio.destination);
+      osc.start();
+    }
+    if (audio && audio.state === "suspended") audio.resume();
+  });
+  let buzzerOn = false;
+  function setBuzzer(on) {
+    if (on === buzzerOn) return;
+    buzzerOn = on;
+    if (gain) gain.gain.setTargetAtTime(on && soundBox.checked ? 0.04 : 0, audio.currentTime, 0.005);
+  }
+  soundBox.addEventListener("change", () => { buzzerOn = null; });  // 다음 화면 갱신 때 소리 상태 다시 적용
+
+  // millis()처럼 시간을 보고 켜짐/꺼짐 계산
+  function frame(now) {
+    const L = LEVELS[level];
+
+    // 후방 LED
+    let on = true;
+    if (L.rear.blinkMs > 0) on = (now % L.rear.blinkMs) < L.rear.blinkMs / 2;
+    const rearLevel = on ? L.rear.duty : 0;
+    rearLed.setAttribute("fill", rearLevel > 0 ? `rgba(255,59,48,${0.35 + 0.65 * rearLevel})` : "#5A1A17");
+    rearGlow.setAttribute("opacity", (rearLevel * 0.9).toFixed(2));
+
+    // 핸들 RGB LED
+    const [r, g, b] = L.handle.rgb;
+    const br = L.handle.bright;
+    if (br > 0) {
+      handlePixel.setAttribute("fill", `rgb(${r},${g},${b})`);
+      handleGlow.setAttribute("opacity", (0.35 + 0.6 * br).toFixed(2));
+    } else {
+      handlePixel.setAttribute("fill", "#2A333A");
+      handleGlow.setAttribute("opacity", "0");
+    }
+
+    // 부저
+    let beep = false;
+    if (L.beep === "short") beep = (now % 500) < 100;
+    if (L.beep === "long") beep = true;
+    waves.setAttribute("opacity", beep ? "0.8" : "0");
+    setBuzzer(beep);
+
+    requestAnimationFrame(frame);
+  }
+
+  setLevel(0);
+  requestAnimationFrame(frame);
+})();
+
+</script>
+<script src="js/chatbot.js"></script>
+</body></html>

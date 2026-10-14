@@ -3,6 +3,8 @@
 사용법 (rearguard 폴더에서):
     python scripts/ingest.py --dry-run   # API 호출 없이 청크 결과만 확인
     python scripts/ingest.py             # 임베딩 생성 후 테이블을 비우고 다시 적재
+    python scripts/ingest.py --only hardware-diagram.html report/hardware_parts_design.md
+                                         # 지정한 파일만 임베딩해 그 파일의 행만 교체 (무료 한도 절약)
 
 필요한 .env 값: GEMINI_API_KEY, SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY
 표준 라이브러리만 사용하므로 별도 설치가 필요 없다.
@@ -12,12 +14,13 @@ import re
 import sys
 import time
 import urllib.error
+import urllib.parse
 import urllib.request
 from html.parser import HTMLParser
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
-SOURCES = ["index.html", "vision-review.html", "PRD/PRD.md", "report/*.md"]
+SOURCES = ["index.html", "vision-review.html", "hardware-diagram.html", "PRD/PRD.md", "report/*.md"]
 
 EMBED_MODEL = "gemini-embedding-001"
 EMBED_DIM = 768
@@ -208,8 +211,23 @@ def embed_batch(texts, key):
             sys.exit(f"Gemini 오류 {e.code}: {e.read().decode()[:300]}")
 
 
+def only_sources():
+    if "--only" not in sys.argv:
+        return None
+    names = [a for a in sys.argv[sys.argv.index("--only") + 1:] if not a.startswith("--")]
+    if not names:
+        sys.exit("--only 뒤에 파일 경로를 적어 주세요.")
+    return names
+
+
 def main():
     rows = build_chunks()
+    only = only_sources()
+    if only:
+        unknown = set(only) - {r["source"] for r in rows}
+        if unknown:
+            sys.exit(f"청크가 없는 파일입니다: {', '.join(sorted(unknown))}")
+        rows = [r for r in rows if r["source"] in only]
     by_source = {}
     for r in rows:
         by_source[r["source"]] = by_source.get(r["source"], 0) + 1
@@ -236,7 +254,11 @@ def main():
     base = env["SUPABASE_URL"].rstrip("/") + "/rest/v1/rearguard_docs"
     headers = {"apikey": env["SUPABASE_SERVICE_ROLE_KEY"], "Prefer": "return=minimal"}
     try:
-        request(base + "?id=gte.0", headers=headers, method="DELETE")
+        if only:
+            for src in only:
+                request(base + "?source=eq." + urllib.parse.quote(src, safe=""), headers=headers, method="DELETE")
+        else:
+            request(base + "?id=gte.0", headers=headers, method="DELETE")
         for i in range(0, len(rows), 50):
             request(base, rows[i:i + 50], headers, method="POST")
     except urllib.error.HTTPError as e:

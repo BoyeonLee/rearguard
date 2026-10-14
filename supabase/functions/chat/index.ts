@@ -4,6 +4,8 @@ import { createClient } from "npm:@supabase/supabase-js@2";
 const GEMINI_API_KEY = Deno.env.get("GEMINI_API_KEY")!;
 const EMBED_MODEL = "gemini-embedding-001";
 const CHAT_MODEL = "gemini-2.5-flash";
+const FALLBACK_MODEL = "gemini-2.5-flash-lite";  // CHAT_MODEL이 붐비거나 한도에 걸렸을 때 사용
+const RETRY_STATUS = [500, 503];                 // 잠깐 기다렸다 다시 시도할 Gemini 오류
 const GEMINI = "https://generativelanguage.googleapis.com/v1beta/models";
 
 const ALLOWED_ORIGINS = [
@@ -20,6 +22,7 @@ const SYSTEM_PROMPT = `너는 RearGuard(자전거 후방 위험 경고 엣지 AI
 규칙:
 - 반드시 아래 [참고 자료]에 있는 내용만 근거로 한국어로 답한다.
 - 자료에 없는 내용은 추측하지 말고 "홈페이지 자료에서는 확인되지 않습니다."라고 답한다.
+- 서로 다른 문장을 합쳐 자료에 없는 원인·목적·결과를 만들지 않는다. 수치와 이유는 자료에 적힌 그대로 쓴다.
 - 3~5문장 이내로 핵심만 간결하게 답한다. 목록이 필요하면 최대 4개 항목까지만 쓴다.
 - 마크다운 표나 제목은 쓰지 않는다.`;
 
@@ -41,14 +44,31 @@ class GeminiError extends Error {
   constructor(public status: number, message: string) { super(message); }
 }
 
+// 일시적 오류(500·503)는 1초, 2초 뒤 최대 2번 다시 시도한다
 async function gemini(path: string, body: unknown) {
-  const res = await fetch(`${GEMINI}/${path}`, {
-    method: "POST",
-    headers: { "Content-Type": "application/json", "x-goog-api-key": GEMINI_API_KEY },
-    body: JSON.stringify(body),
-  });
-  if (!res.ok) throw new GeminiError(res.status, await res.text());
-  return res.json();
+  for (let attempt = 0; ; attempt++) {
+    const res = await fetch(`${GEMINI}/${path}`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json", "x-goog-api-key": GEMINI_API_KEY },
+      body: JSON.stringify(body),
+    });
+    if (res.ok) return res.json();
+    const err = new GeminiError(res.status, await res.text());
+    if (!RETRY_STATUS.includes(res.status) || attempt >= 2) throw err;
+    console.warn(`Gemini ${res.status} (${path}), ${attempt + 1}번째 재시도`);
+    await new Promise((r) => setTimeout(r, 1000 * (attempt + 1)));
+  }
+}
+
+// 답변 생성: CHAT_MODEL이 계속 붐비거나(500·503) 한도(429)에 걸리면 FALLBACK_MODEL로 한 번 더
+async function generate(body: unknown) {
+  try {
+    return await gemini(`${CHAT_MODEL}:generateContent`, body);
+  } catch (e) {
+    if (!(e instanceof GeminiError) || ![429, ...RETRY_STATUS].includes(e.status)) throw e;
+    console.warn(`${CHAT_MODEL} ${e.status} → ${FALLBACK_MODEL}로 전환`);
+    return await gemini(`${FALLBACK_MODEL}:generateContent`, body);
+  }
 }
 
 Deno.serve(async (req) => {
@@ -93,7 +113,7 @@ Deno.serve(async (req) => {
       .slice(-MAX_HISTORY)
       .map((m) => ({ role: m.role, parts: [{ text: String(m.text).slice(0, 800) }] }));
 
-    const gen = await gemini(`${CHAT_MODEL}:generateContent`, {
+    const gen = await generate({
       systemInstruction: { parts: [{ text: `${SYSTEM_PROMPT}\n\n[참고 자료]\n${context || "(관련 자료 없음)"}` }] },
       contents: [...past, { role: "user", parts: [{ text: q }] }],
       generationConfig: {
@@ -113,6 +133,10 @@ Deno.serve(async (req) => {
   } catch (e) {
     if (e instanceof GeminiError && e.status === 429) {
       return json({ error: "요청이 많아 잠시 쉬는 중입니다. 1분 후 다시 시도해 주세요." }, 429);
+    }
+    if (e instanceof GeminiError && RETRY_STATUS.includes(e.status)) {
+      console.error(e);
+      return json({ error: "AI 모델이 일시적으로 붐빕니다. 잠시 후 다시 시도해 주세요." }, 503);
     }
     console.error(e);
     return json({ error: "일시적인 오류가 발생했습니다." }, 500);
