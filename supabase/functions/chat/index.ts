@@ -17,6 +17,21 @@ const ALLOWED_ORIGINS = [
 ];
 const MAX_QUESTION = 500;   // 질문 최대 글자 수
 const MAX_HISTORY = 4;      // 함께 보낼 이전 메시지 수 (2턴)
+const MIN_TOPIC_HITS = 2;   // 주제 안 검색 결과가 이보다 적으면 전체에서 다시 검색
+
+// 질문 키워드로 검색할 주제를 고른다 (DB topic 열 값). 맞는 주제가 없으면 전체 검색.
+const TOPIC_KEYWORDS: [string, RegExp][] = [
+  ["model", /모델|YOLO|욜로|검출|학습|파인튜닝|추론|엔진|TFLite|LiteRT|ONNX|OpenVINO|NCNN|mAP|정확도|검증|양자화|DEIM|DETR|SAM|SigLIP|MediaPipe|DINO|OCR/i],
+  ["data", /데이터|전처리|nuScenes|라벨|증강|현장 ?조사|체크리스트|비식별|합성 ?궤적|테스트셋/i],
+  ["hardware", /하드웨어|ESP32|BLE|LED|부저|배터리|회로|부품|마운트|경고 ?유닛|배선/i],
+  ["prd", /PRD|요구 ?사항|성공 ?지표|개발 ?범위|사용자 ?시나리오/i],
+  ["overview", /레이더|경고 ?단계|로드맵|한계|개발 ?로그|포지셔닝|사각지대/i],
+];
+
+function pickTopics(q: string): string[] | null {
+  const topics = TOPIC_KEYWORDS.filter(([, re]) => re.test(q)).map(([t]) => t);
+  return topics.length ? topics : null;
+}
 
 const SYSTEM_PROMPT = `너는 RearGuard(자전거 후방 위험 경고 엣지 AI 시스템) 홈페이지의 안내 챗봇이다.
 규칙:
@@ -94,15 +109,24 @@ Deno.serve(async (req) => {
       outputDimensionality: 768,
     });
 
-    // 2) 유사 청크 검색
-    const { data: docs, error } = await supabase.rpc("match_rearguard_docs", {
-      query_embedding: emb.embedding.values,
-      match_count: 5,
-      match_threshold: 0.5,
-    });
-    if (error) throw error;
+    // 2) 유사 청크 검색: 질문 주제 안에서 먼저 찾고, 결과가 적으면 전체에서 다시 찾는다
+    const search = async (filter_topics: string[] | null) => {
+      const { data, error } = await supabase.rpc("match_rearguard_docs_by_topic", {
+        query_embedding: emb.embedding.values,
+        match_count: 5,
+        match_threshold: 0.5,
+        filter_topics,
+      });
+      if (error) throw error;
+      return data ?? [];
+    };
+    const topics = pickTopics(q);
+    let docs = await search(topics);
+    const fallback = topics !== null && docs.length < MIN_TOPIC_HITS;
+    if (fallback) docs = await search(null);
+    console.log(`검색 주제: ${topics?.join(",") ?? "전체"}${fallback ? " → 전체 재검색" : ""}, ${docs.length}건`);
 
-    const context = (docs ?? [])
+    const context = docs
       .map((d: { source: string; title: string; content: string }, i: number) =>
         `[${i + 1}] (${d.source} · ${d.title})\n${d.content}`)
       .join("\n\n");
@@ -126,7 +150,7 @@ Deno.serve(async (req) => {
     const answer = gen.candidates?.[0]?.content?.parts?.map((p: { text?: string }) => p.text ?? "").join("").trim()
       || "답변을 생성하지 못했습니다. 다시 시도해 주세요.";
 
-    const sources = [...new Map((docs ?? []).map((d: { source: string; title: string }) =>
+    const sources = [...new Map(docs.map((d: { source: string; title: string }) =>
       [`${d.source}|${d.title}`, { source: d.source, title: d.title }])).values()].slice(0, 3);
 
     return json({ answer, sources });

@@ -30,6 +30,27 @@ CHUNK_MAX = 900       # 청크 최대 글자 수
 CHUNK_OVERLAP = 150   # 다음 청크로 이어 붙일 앞 청크의 꼬리 길이
 CHUNK_MIN = 40        # 이보다 짧은 청크는 버린다
 
+# 주제 분류. supabase/migrations/002_rearguard_docs_topic.sql의 규칙과 같아야 한다.
+TOPIC_BY_SOURCE = {
+    "PRD/PRD.md": "prd",
+    "hardware-diagram.html": "hardware",
+    "report/hardware_parts_design.md": "hardware",
+    "report/data_preprocessing_design.md": "data",
+    "report/nuScenes_checklist.md": "data",
+    "report/checklist.md": "data",
+    "report/checklist_result.md": "data",
+    "vision-review.html": "model",
+    "report/vision_model_review.md": "model",
+    "report/model_training_validation_design.md": "model",
+    "report/inference_engine_selection.md": "model",
+}
+# index.html은 섹션 제목으로 나눈다 (위에서부터 먼저 맞는 규칙)
+TOPIC_BY_INDEX_TITLE = [
+    (r"경고 하드웨어|경고 유닛", "hardware"),
+    (r"전처리", "data"),
+    (r"YOLO26n|검증|성능 목표", "model"),
+]
+
 
 def load_env():
     env = {}
@@ -164,6 +185,17 @@ def split_text(text):
     return chunks
 
 
+def topic_of(source, title):
+    if source in TOPIC_BY_SOURCE:
+        return TOPIC_BY_SOURCE[source]
+    if source == "index.html":
+        for pattern, topic in TOPIC_BY_INDEX_TITLE:
+            if re.search(pattern, title):
+                return topic
+        return "overview"
+    sys.exit(f"주제가 정해지지 않은 파일입니다: {source} (TOPIC_BY_SOURCE와 002 마이그레이션에 추가하세요)")
+
+
 def build_chunks():
     files = []
     for pattern in SOURCES:
@@ -173,9 +205,10 @@ def build_chunks():
         rel = f.relative_to(ROOT).as_posix()
         sections = parse_html(f) if f.suffix == ".html" else parse_md(f)
         for title, text in sections:
+            topic = topic_of(rel, title)
             for i, chunk in enumerate(split_text(text)):
                 if len(chunk) >= CHUNK_MIN:
-                    rows.append({"source": rel, "title": title, "chunk_index": i, "content": chunk})
+                    rows.append({"source": rel, "title": title, "topic": topic, "chunk_index": i, "content": chunk})
     return rows
 
 
@@ -231,9 +264,13 @@ def main():
     by_source = {}
     for r in rows:
         by_source[r["source"]] = by_source.get(r["source"], 0) + 1
+    by_topic = {}
+    for r in rows:
+        by_topic[r["topic"]] = by_topic.get(r["topic"], 0) + 1
     print(f"청크 {len(rows)}개")
     for s, n in by_source.items():
         print(f"  {s}: {n}")
+    print("주제별:", ", ".join(f"{t} {n}" for t, n in sorted(by_topic.items())))
 
     if "--dry-run" in sys.argv:
         for r in rows[:3]:

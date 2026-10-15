@@ -504,6 +504,56 @@
 </div>
 <p class="font-body-sm text-body-sm text-outline">입력 크기가 모델마다 달라 AP는 대략적인 차이로만 봅니다. 출시 계획이 없는 PoC이므로 라이선스는 선정 조건에 넣지 않았습니다.</p>
 </div>
+<div class="flex flex-col gap-space-md">
+<div class="flex flex-col gap-space-xs">
+<h3 class="font-headline-sm text-headline-sm text-on-surface">추론 엔진: 왜 TFLite(LiteRT)인가</h3>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-3xl">PoC는 노트북에서 ONNX Runtime으로 검증하고, <span class="text-on-surface font-semibold">출시 앱(스마트폰)에서는 TFLite(LiteRT)로 실행</span>합니다. YOLO26n을 4개 엔진으로 변환해 같은 조건에서 비교한 결과, 정확도는 모두 같아 속도·모바일 가속·앱 연동성으로 결정했습니다.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-space-lg">
+<div class="bg-surface-container-low p-space-lg rounded-xl flex flex-col gap-space-sm shadow-md">
+<div class="font-headline-sm text-headline-sm text-on-surface font-semibold flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-primary">memory</span>
+<span class="">GPU·NPU 가속을 가장 넓게 지원</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant">모델 파일 하나로 CPU·GPU·NPU(Qualcomm·MediaTek)를 골라 쓸 수 있습니다. 장시간 주행에서도 발열·배터리 부담을 줄이며 15 FPS, 200ms 이하 목표를 유지하기 유리합니다.</p>
+</div>
+<div class="bg-surface-container-low p-space-lg rounded-xl flex flex-col gap-space-sm shadow-md">
+<div class="font-headline-sm text-headline-sm text-on-surface font-semibold flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-primary">smartphone</span>
+<span class="">Android·iOS 모두 지원</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant">라이더가 이미 가진 스마트폰을 쓰는 제품이라 기기 범위가 넓어야 합니다. 공식 Kotlin/Swift API가 있어 앱 연동과 유지보수도 가장 쉽습니다.</p>
+</div>
+<div class="bg-surface-container-low p-space-lg rounded-xl flex flex-col gap-space-sm shadow-md">
+<div class="font-headline-sm text-headline-sm text-on-surface font-semibold flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-primary">verified</span>
+<span class="">정확도 손실 없이 변환 검증</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant">Ultralytics 공식 내보내기로 변환했고, ONNX와 mAP50-95(0.4668)가 완전히 같았습니다.</p>
+</div>
+<div class="bg-surface-container-low p-space-lg rounded-xl flex flex-col gap-space-sm shadow-md">
+<div class="font-headline-sm text-headline-sm text-on-surface font-semibold flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-primary">speed</span>
+<span class="">벤치마크에서 가장 빠름</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant">노트북 CPU 비교에서 추론 57.1ms(17.5 FPS)로 4개 엔진 중 1위였습니다. 스마트폰 실측은 다음 단계에서 진행합니다.</p>
+</div>
+</div>
+<div class="overflow-x-auto rounded-xl bg-surface-container-low">
+<table class="w-full min-w-[640px] text-left font-body-sm text-body-sm">
+<thead class="text-on-surface-variant font-label-code-sm text-label-code-sm">
+<tr class="border-b border-outline-variant/30"><th class="p-space-md font-medium">엔진</th><th class="p-space-md font-medium">노트북 CPU 추론</th><th class="p-space-md font-medium">스마트폰 가속</th><th class="p-space-md font-medium">판단</th></tr>
+</thead>
+<tbody class="text-on-surface-variant">
+<tr class="border-b border-outline-variant/20 bg-primary/5"><td class="p-space-md font-mono text-primary font-semibold">TFLite (LiteRT)</td><td class="p-space-md">57.1ms</td><td class="p-space-md">GPU · NPU · iOS</td><td class="p-space-md text-on-surface font-semibold">출시 앱 채택</td></tr>
+<tr class="border-b border-outline-variant/20"><td class="p-space-md font-mono text-on-surface">ONNX Runtime</td><td class="p-space-md">80.8ms</td><td class="p-space-md">GPU 약함, NPU는 칩 제조사별</td><td class="p-space-md">PoC 실행·정확도 비교 기준</td></tr>
+<tr class="border-b border-outline-variant/20"><td class="p-space-md font-mono text-on-surface">OpenVINO</td><td class="p-space-md">85.8ms</td><td class="p-space-md">미지원 (Intel 전용)</td><td class="p-space-md">불채택</td></tr>
+<tr><td class="p-space-md font-mono text-on-surface">NCNN</td><td class="p-space-md">98.4ms</td><td class="p-space-md">Vulkan GPU, NPU 없음</td><td class="p-space-md">차선책</td></tr>
+</tbody>
+</table>
+</div>
+<p class="font-body-sm text-body-sm text-outline">YOLO26n FP32 · 640 입력 · coco128 100장 · CPU 4스레드, 3회 측정 중앙값. x86 노트북 측정값이라 스마트폰(ARM)에서는 순위가 달라질 수 있습니다.</p>
+</div>
 <a class="group bg-surface-container-low hover:bg-surface-container p-space-lg rounded-xl flex flex-col sm:flex-row sm:items-center justify-between gap-space-md transition-colors" href="vision-review.html">
 <div class="flex flex-col gap-space-xs">
 <span class="font-label-code-sm text-label-code-sm text-primary">추가문서</span>
