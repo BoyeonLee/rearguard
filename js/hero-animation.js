@@ -356,16 +356,16 @@
 
     ctx.fillStyle = 'rgba(5,8,14,.78)'; ctx.fillRect(x, y, w, 13);
     text('● 후방 카메라', x + 5, y + 7, 7.5, COL.cyan, 700);
-    text('온디바이스 추론', x + w - 5, y + 7, 7.5, '#869397', 600, 'right');
+    text('폰 안에서 판단', x + w - 5, y + 7, 7.5, '#869397', 600, 'right');
     ctx.fillStyle = 'rgba(5,8,14,.78)'; ctx.fillRect(x, y + h - 14, w, 14);
     const by = y + h - 6.5;
     if (st === 1 || st === 2) {
       const w1 = text(`d ${d.toFixed(1)}m`, x + 5, by, 8, '#dfe2ee');
-      text(`TTC ${ttc.toFixed(1)}s`, x + 14 + w1, by, 8, st === 2 ? '#ff817a' : COL.amber);
+      text(`충돌까지 ${ttc.toFixed(1)}초`, x + 14 + w1, by, 8, st === 2 ? '#ff817a' : COL.amber);
     } else if (st === 3) {
-      text('CLOSE PASS 기록 · CPA 1.1m', x + 5, by, 8, COL.amber);
+      text('근접 추월 기록 · 옆 간격 1.1m', x + 5, by, 8, COL.amber);
     } else {
-      text('NO TARGET', x + 5, by, 8, '#869397');
+      text('감지된 차량 없음', x + 5, by, 8, '#869397');
     }
     ctx.restore();
   }
@@ -375,12 +375,12 @@
   const setText = (k, v) => { if (last[k] !== v) { last[k] = v; el[k].textContent = v; } };
   function hud(t, ph) {
     const { st, d, ttc } = ph;
-    setText('state', ['STATE: CLEAR', 'STATE: DETECTED', 'STATE: APPROACHING', 'STATE: PASSED · LOGGED'][st]);
+    setText('state', ['안전 · 뒤차 없음', '뒤차 감지', '빠르게 다가옴', '추월 완료 · 기록됨'][st]);
     el.state.style.color = ['#4cd7f6', '#ffb95f', '#ff817a', '#ffb95f'][st];
-    setText('track', st === 0 ? 'KALMAN: IDLE' : 'KALMAN: TRACK #042');
+    setText('track', st === 0 ? '대기 중' : '차량 추적 중');
     const chip = st === 1 ? [`후방 차량 감지 · ${d.toFixed(0)}m`, 'amber']
-      : st === 2 ? [`⚠ 후방 차량 급접근 · TTC ${ttc.toFixed(1)}s`, 'red']
-      : st === 3 ? ['WARN: CPA 1.1m (CLOSE PASS)', 'amber'] : null;
+      : st === 2 ? [`⚠ 빠르게 다가옴 · 충돌까지 ${ttc.toFixed(1)}초`, 'red']
+      : st === 3 ? ['가깝게 추월함 · 옆 간격 1.1m', 'amber'] : null;
     if (chip) { setText('chip', chip[0]); el.chip.dataset.tone = chip[1]; }
     el.chip.style.opacity = chip ? 1 : 0;
     el.vig.style.opacity = st === 2 ? (0.3 + 0.3 * Math.sin(t * Math.PI * 2 * 3)) * sstep(3.8, 4.2, t) : 0;

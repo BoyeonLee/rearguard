@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="ko"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/><meta content="mobile_tab" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{width:100%;margin:0;padding:0;background-color:#0f131c;}body{overscroll-behavior-y:none;}.pb-safe{padding-bottom:env(safe-area-inset-bottom,0px);}.pt-safe{padding-top:env(safe-area-inset-top,0px);}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { "colors": { "tertiary": "#6efe9c", "on-surface-variant": "#bcc9cd", "on-background": "#dfe2ef", "error-container": "#93000a", "on-tertiary-fixed": "#00210c", "tertiary-fixed": "#6dfe9c", "on-secondary-fixed-variant": "#653e00", "on-primary-container": "#005b6b", "outline": "#869397", "inverse-on-surface": "#2c303a", "primary-fixed": "#acedff", "surface-container-low": "#181b25", "on-error-container": "#ffdad6", "on-tertiary-container": "#00602e", "surface-tint": "#4cd7f6", "on-error": "#690005", "on-tertiary": "#003919", "inverse-primary": "#00687a", "primary-fixed-dim": "#4cd7f6", "inverse-surface": "#dfe2ef", "on-secondary": "#472a00", "on-tertiary-fixed-variant": "#005227", "surface-variant": "#31353f", "primary": "#acedff", "surface-dim": "#0f131c", "primary-container": "#4cd7f6", "on-secondary-fixed": "#2a1700", "surface-container": "#1c2029", "tertiary-container": "#4de183", "secondary-container": "#8f5a00", "on-primary-fixed-variant": "#004e5c", "on-primary": "#003640", "on-secondary-container": "#ffdfbc", "secondary": "#ffb95f", "surface-container-lowest": "#0a0e17", "on-surface": "#dfe2ef", "secondary-fixed": "#ffddb8", "secondary-fixed-dim": "#ffb95f", "tertiary-fixed-dim": "#4de082", "surface-container-highest": "#31353f", "outline-variant": "#3d494c", "surface-bright": "#353943", "surface-container-high": "#262a34", "error": "#ffb4ab", "background": "#0f131c", "on-primary-fixed": "#001f26", "surface": "#0f131c" }, "borderRadius": { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" }, "spacing": { "space-xl": "1.5rem", "space-lg": "1rem", "space-xs": "0.25rem", "gutter": "0.75rem", "margin": "1rem", "space-md": "0.75rem", "margin-desktop": "1.5rem", "gutter-desktop": "1rem", "space-sm": "0.5rem" }, "fontFamily": { "headline-xl-mobile": ["JetBrains Mono"], "label-md": ["JetBrains Mono"], "headline-md": ["Inter"], "body-lg": ["Inter"], "label-lg": ["JetBrains Mono"], "label-sm": ["JetBrains Mono"], "body-md": ["Inter"], "headline-lg": ["JetBrains Mono"], "headline-xl": ["JetBrains Mono"] }, "fontSize": { "headline-xl-mobile": ["36px", { "lineHeight": "40px", "letterSpacing": "-0.03em", "fontWeight": "700" }], "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.06em", "fontWeight": "500" }], "headline-md": ["22px", { "lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600" }], "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }], "label-lg": ["14px", { "lineHeight": "18px", "letterSpacing": "0.04em", "fontWeight": "500" }], "label-sm": ["10px", { "lineHeight": "14px", "letterSpacing": "0.08em", "fontWeight": "600" }], "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }], "headline-lg": ["32px", { "lineHeight": "36px", "letterSpacing": "-0.02em", "fontWeight": "600" }], "headline-xl": ["48px", { "lineHeight": "52px", "letterSpacing": "-0.04em", "fontWeight": "700" }] } } } };</script><style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style><style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head><body class="bg-surface font-body-md text-body-md text-on-surface antialiased min-h-screen flex flex-col selection:bg-primary-container selection:text-on-primary-container"><header class="fixed top-0 w-full z-50 pt-safe bg-surface/85 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.35)]"><div class="h-16 px-margin flex items-center justify-between"><div class="flex items-center gap-space-sm"><img alt="RearGuard Logo" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1URZ7yNf1UdkbkMBbSH3ivk5MGA5O0Yo6u4QEgNRvSbMyAczgB5VOxstjh4vWNdxbKJd9DJHvahPVVq9FU8ZjmJATwHi7NcA3PpLQqvHsW5ss8P8xhBb0viDGZrrTqfUsSl-jEp1n2IHFf2LwT5zMmL0Y_LOTg4mxEI5hP0qTdmbbvaNKbrjuzouYJ7moyDbucZMQoOUWKFcaLXJaBXgeAuUXBwxBMGpZ5MJEDtlIQ4sA2B0ReRcGoOkmo"/><span class="font-headline-md text-headline-md text-on-surface font-bold tracking-wider uppercase leading-none">REARGUARD</span></div><div class="flex items-center gap-space-sm"><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></header><main class="flex-1 flex flex-col relative w-full px-margin pt-16 pb-24 bg-surface"><div class="flex flex-col w-full gap-y-space-md pb-6">
+<!-- Top Header Row -->
+<div class="flex items-center justify-between pt-2">
+<div class="flex items-center gap-space-sm">
+<button aria-label="이전 화면으로 이동" class="w-10 h-10 rounded-lg bg-surface-container flex items-center justify-center text-on-surface hover:text-primary transition-colors" type="button">
+<span class="material-symbols-outlined text-[20px]">arrow_back</span>
+</button>
+<div class="flex flex-col">
+<h1 class="font-headline-md text-headline-md text-on-surface tracking-tight font-semibold">장착 보정</h1>
+<span class="font-body-md text-[11px] text-on-surface-variant leading-tight">마운트에 폰을 끼운 뒤 진행하세요</span>
+</div>
+</div>
+<!-- Status Diagnostic Badge -->
+<div class="flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-surface-container-low shadow-sm">
+<span class="relative flex h-2 w-2">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-tertiary opacity-75"></span>
+<span class="relative inline-flex rounded-full h-2 w-2 bg-tertiary"></span>
+</span>
+<span class="font-label-sm text-label-sm text-tertiary tracking-wider uppercase">SENSOR LIVE</span>
+</div>
+</div>
+<!-- Step 01: 장착 높이 -->
+<section class="flex flex-col bg-surface-container rounded-lg p-space-lg shadow-sm gap-y-space-md">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="font-label-md text-label-md text-primary font-semibold">01</span>
+<h2 class="font-body-lg text-body-lg text-on-surface font-semibold">장착 높이</h2>
+</div>
+<div class="flex items-center gap-1 text-on-surface-variant">
+<span class="material-symbols-outlined text-[15px] text-primary">info</span>
+<span class="font-label-sm text-label-sm">권장 60–80 cm</span>
+</div>
+</div>
+<!-- Technical Diagram (CAD-styled Bicycle Silhouette with Height Dimension) -->
+<div class="w-full bg-surface-container-lowest rounded-lg p-3 flex flex-col items-center justify-center relative overflow-hidden">
+<svg class="w-full max-w-[280px] h-36" fill="none" viewbox="0 0 280 144" xmlns="http://www.w3.org/2000/svg">
+<line stroke="#3d494c" stroke-dasharray="4 3" stroke-width="1.5" x1="8" x2="272" y1="126" y2="126"></line>
+<text fill="#869397" font-family="JetBrains Mono" font-size="9" letter-spacing="0.05em" x="238" y="138">GROUND</text>
+<circle cx="68" cy="98" r="26" stroke="#3d494c" stroke-width="2"></circle>
+<circle cx="68" cy="98" fill="#869397" r="2"></circle>
+<circle cx="196" cy="98" r="26" stroke="#3d494c" stroke-width="2"></circle>
+<circle cx="196" cy="98" fill="#869397" r="2"></circle>
+<path d="M68 98 L114 98 L142 66 L88 66 Z" stroke="#869397" stroke-linejoin="round" stroke-width="2"></path>
+<path d="M114 98 L136 50" stroke="#869397" stroke-width="2"></path>
+<path d="M142 66 L184 48 L196 98" stroke="#869397" stroke-linejoin="round" stroke-width="2"></path>
+<path d="M174 46 L192 46" stroke="#869397" stroke-linecap="round" stroke-width="2.5"></path>
+<path d="M130 48 L146 48" stroke="#869397" stroke-linecap="round" stroke-width="3"></path>
+<path d="M131 58 L119 58" stroke="#4cd7f6" stroke-linecap="round" stroke-width="2.5"></path>
+<circle cx="119" cy="58" fill="#4cd7f6" r="4"></circle>
+<line stroke="#4cd7f6" stroke-dasharray="2 2" stroke-width="1.5" x1="119" x2="119" y1="58" y2="126"></line>
+<line stroke="#4cd7f6" stroke-width="2" x1="115" x2="123" y1="58" y2="58"></line>
+<line stroke="#4cd7f6" stroke-width="2" x1="115" x2="123" y1="126" y2="126"></line>
+<rect fill="#181b25" height="20" rx="3" width="52" x="130" y="86"></rect>
+<text fill="#acedff" font-family="JetBrains Mono" font-size="11" font-weight="700" id="cad-height-val" text-anchor="middle" x="156" y="100">72 cm</text>
+</svg>
+<div class="absolute top-2 left-2 flex items-center gap-1 font-label-sm text-[9px] text-outline tracking-wider">
+<span>MOUNT: SEATPOST · REAR-FACING</span>
+</div>
+</div>
+<!-- Stepper & Numerical Readout -->
+<div class="flex items-center justify-between bg-surface-container-low p-2 rounded-lg">
+<button aria-label="높이 1cm 줄이기" class="w-11 h-11 rounded-lg bg-surface-container flex items-center justify-center text-on-surface hover:text-primary active:bg-surface-variant transition-all select-none" id="btn-decrease" type="button">
+<span class="material-symbols-outlined text-[20px]">remove</span>
+</button>
+<div class="flex items-baseline gap-1.5 px-4">
+<span class="font-headline-xl-mobile text-headline-xl-mobile font-bold text-on-surface tracking-tight" id="height-display">72</span>
+<span class="font-label-lg text-label-lg text-primary uppercase font-bold">cm</span>
+</div>
+<button aria-label="높이 1cm 늘리기" class="w-11 h-11 rounded-lg bg-surface-container flex items-center justify-center text-on-surface hover:text-primary active:bg-surface-variant transition-all select-none" id="btn-increase" type="button">
+<span class="material-symbols-outlined text-[20px]">add</span>
+</button>
+</div>
+<div class="flex items-center justify-center gap-1.5 text-on-surface-variant">
+<span class="font-body-md text-xs">지면에서 스마트폰 카메라 렌즈 중심까지의 수직 거리입니다.</span>
+</div>
+</section>
+<!-- Step 02: 카메라 각도 -->
+<section class="flex flex-col bg-surface-container rounded-lg p-space-lg shadow-sm gap-y-space-md">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="font-label-md text-label-md text-primary font-semibold">02</span>
+<h2 class="font-body-lg text-body-lg text-on-surface font-semibold">카메라 각도</h2>
+</div>
+<!-- Alignment badge -->
+<div class="flex items-center gap-1 px-2.5 py-0.5 rounded-lg bg-tertiary-container/20 text-tertiary">
+<span class="material-symbols-outlined text-[16px]">check_circle</span>
+<span class="font-label-sm text-label-sm font-semibold">적정 각도</span>
+</div>
+</div>
+<!-- Value & description summary -->
+<div class="flex items-baseline justify-between px-1">
+<div class="flex items-baseline gap-1">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">PITCH</span>
+<span class="font-headline-xl-mobile text-headline-xl-mobile font-bold text-on-surface tracking-tight ml-2">-8</span>
+<span class="font-label-lg text-label-lg text-primary font-bold">°</span>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant">목표 -8° (±4°)</span>
+</div>
+<!-- Pitch Gauge Rail Component -->
+<div class="flex flex-col gap-2 bg-surface-container-lowest p-3 rounded-lg">
+<div class="flex justify-between items-center font-label-sm text-[10px] text-outline px-1">
+<span>-20° (노면지향)</span>
+<span class="text-tertiary">적정 범위 (-12° ~ -4°)</span>
+<span>+5° (하늘지향)</span>
+</div>
+<!-- Horizontal Gauge Bar -->
+<div class="relative h-7 w-full bg-surface-container-low rounded-lg flex items-center px-1 overflow-hidden">
+<!-- Scale Tick Marks -->
+<div class="absolute inset-0 flex justify-between items-center px-3 pointer-events-none opacity-30">
+<div class="h-2 w-0.5 bg-outline"></div>
+<div class="h-1.5 w-0.5 bg-outline"></div>
+<div class="h-2 w-0.5 bg-outline"></div>
+<div class="h-1.5 w-0.5 bg-outline"></div>
+<div class="h-3 w-0.5 bg-outline"></div>
+<div class="h-1.5 w-0.5 bg-outline"></div>
+<div class="h-2 w-0.5 bg-outline"></div>
+<div class="h-1.5 w-0.5 bg-outline"></div>
+<div class="h-2 w-0.5 bg-outline"></div>
+</div>
+<!-- Optimal Target Zone Highlight (-12° to -4° over total span 25° from -20° to +5°) -->
+<!-- Range is 25 deg. Start = (-12 - (-20)) / 25 = 8/25 = 32%. Width = 8/25 = 32% -->
+<div class="absolute top-1 bottom-1 left-[32%] w-[32%] bg-tertiary/20 rounded flex items-center justify-center">
+<span class="font-label-sm text-[9px] text-tertiary font-bold tracking-widest uppercase opacity-80">TARGET</span>
+</div>
+<!-- Center Indicator Pin (-8° sits at (12/25) = 48%) -->
+<div class="absolute left-[48%] -translate-x-1/2 flex flex-col items-center z-10">
+<div class="w-3 h-3 rounded-full bg-primary flex items-center justify-center shadow-sm">
+<div class="w-1.5 h-1.5 rounded-full bg-on-primary"></div>
+</div>
+</div>
+</div>
+<div class="flex items-center gap-1.5 text-on-surface-variant px-1 pt-1">
+<span class="material-symbols-outlined text-[16px] text-tertiary">verified</span>
+<span class="font-body-md text-xs">후방 노면과 후속 차량을 안정적으로 감지하는 각도예요.</span>
+</div>
+</div>
+</section>
+<!-- Step 03: 카메라 방향 확인 (Rear View Preview) -->
+<section class="flex flex-col bg-surface-container rounded-lg p-space-lg shadow-sm gap-y-space-md">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="font-label-md text-label-md text-primary font-semibold">03</span>
+<h2 class="font-body-lg text-body-lg text-on-surface font-semibold">카메라 방향 확인</h2>
+</div>
+<div class="flex items-center gap-1 text-primary">
+<span class="material-symbols-outlined text-[16px]">videocam</span>
+<span class="font-label-sm text-label-sm">PREVIEW</span>
+</div>
+</div>
+<!-- Static Camera Preview with Overlays (16:9 Aspect Ratio) -->
+<div class="relative w-full aspect-video rounded-lg overflow-hidden bg-surface-container-lowest">
+<img class="w-full h-full object-cover" data-alt="Rear-facing view from a seatpost camera about 70 cm above the ground: empty road behind the bicycle with a distant car" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC-aP_OCQZsZIqqHTXKsS4mRAMjEXzlRARAMBrKaBM0nMsIR5AZboQaghHanGwnGK9vYiPQ_aFeY5Qagrm94j6fZZ3gMR7testrAMlLH9wGN57RdRFHLBuh3bQW_ZNOh1oF26qL01bqDnNXseUg8Tlfp0zqO0BdTHBJ-SGPMJ3usdPb7iEniD5hVpaLUtQl26JnLroJRIQCkRTW5JFPvdMGL_L3k_wtmaLvsN5UPIPGXi5KB7XTU5PZtOPrmh4osnQgNONiV2_rNNg"/>
+<!-- Horizon Dashed Guide Line -->
+<div class="absolute top-1/2 left-0 right-0 -translate-y-1/2 flex items-center justify-between px-3 pointer-events-none">
+<div class="h-px flex-1 bg-gradient-to-r from-transparent via-primary to-transparent opacity-80"></div>
+<span class="font-label-sm text-[9px] text-primary px-1.5 py-0.5 rounded bg-surface-container-lowest/80 tracking-widest font-semibold ml-1">HORIZON</span>
+</div>
+<!-- Lower Half Road Area Guide Tint -->
+<div class="absolute top-1/2 left-0 right-0 bottom-0 bg-primary/10 pointer-events-none flex items-end justify-center pb-2">
+<div class="px-2 py-0.5 rounded bg-surface-container-lowest/85 flex items-center gap-1">
+<span class="material-symbols-outlined text-[12px] text-primary">navigation</span>
+<span class="font-label-sm text-[9px] text-primary font-medium tracking-wide">권장 도로 감지 영역</span>
+</div>
+</div>
+<!-- Center Alignment Reticle -->
+<div class="absolute inset-0 flex items-center justify-center pointer-events-none">
+<div class="relative w-8 h-8 flex items-center justify-center">
+<div class="w-2 h-0.5 bg-primary absolute -left-1"></div>
+<div class="w-2 h-0.5 bg-primary absolute -right-1"></div>
+<div class="h-2 w-0.5 bg-primary absolute -top-1"></div>
+<div class="h-2 w-0.5 bg-primary absolute -bottom-1"></div>
+<div class="w-1.5 h-1.5 rounded-full bg-primary/70"></div>
+</div>
+</div>
+<!-- Sensor Metadata Tag -->
+<div class="absolute top-2 left-2 flex items-center gap-1 px-2 py-0.5 rounded bg-surface-container-lowest/80 font-label-sm text-[9px] text-on-surface-variant font-mono">
+<span>CAM_REAR · 1080P</span>
+</div>
+</div>
+<div class="flex items-center gap-2 text-on-surface-variant">
+<span class="material-symbols-outlined text-[18px] text-primary shrink-0">crop_free</span>
+<span class="font-body-md text-xs leading-relaxed">도로 노면이 가이드선 아래 절반에 오도록 마운트 각도를 조절해 주세요.</span>
+</div>
+</section>
+<!-- Lens Profile Status Row -->
+<div class="flex items-center justify-between px-3 py-2.5 rounded-lg bg-surface-container-low">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px] text-tertiary">check_circle</span>
+<span class="font-body-md text-xs text-on-surface font-medium">광학 왜곡 보정</span>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase font-mono">기기 프로필 적용됨</span>
+</div>
+<!-- Primary Action Section -->
+<div class="flex flex-col gap-2 pt-2">
+<button class="w-full h-14 bg-primary-container text-on-primary font-label-lg text-label-lg font-bold rounded-lg flex items-center justify-center gap-2 active:scale-[0.99] transition-transform select-none shadow-md" id="save-btn" type="button">
+<span class="material-symbols-outlined text-[20px]">save</span>
+<span>보정 저장</span>
+</button>
+<p class="text-center font-body-md text-xs text-on-surface-variant">
+      설정된 값은 거리 추정 알고리즘에 반영돼요.
+    </p>
+</div>
+</div>
+<script>
+  (function() {
+    let currentHeight = 72;
+    const heightEl = document.getElementById('height-display');
+    const cadValEl = document.getElementById('cad-height-val');
+    const btnDec = document.getElementById('btn-decrease');
+    const btnInc = document.getElementById('btn-increase');
+    const saveBtn = document.getElementById('save-btn');
+
+    function updateHeight(newVal) {
+      currentHeight = Math.max(30, Math.min(150, newVal));
+      if (heightEl) heightEl.textContent = currentHeight;
+      if (cadValEl) cadValEl.textContent = currentHeight + ' cm';
+    }
+
+    if (btnDec) {
+      btnDec.addEventListener('click', function() {
+        updateHeight(currentHeight - 1);
+      });
+    }
+
+    if (btnInc) {
+      btnInc.addEventListener('click', function() {
+        updateHeight(currentHeight + 1);
+      });
+    }
+
+    if (saveBtn) {
+      saveBtn.addEventListener('click', function() {
+        const originalContent = saveBtn.innerHTML;
+        saveBtn.innerHTML = '<span class="material-symbols-outlined text-[20px] animate-spin">sync</span><span>저장 중...</span>';
+        saveBtn.disabled = true;
+        setTimeout(function() {
+          saveBtn.innerHTML = '<span class="material-symbols-outlined text-[20px]">done</span><span>보정 완료</span>';
+          setTimeout(function() {
+            saveBtn.innerHTML = originalContent;
+            saveBtn.disabled = false;
+          }, 1500);
+        }, 600);
+      });
+    }
+  })();
+</script></main><nav class="fixed bottom-0 w-full z-50 pb-safe bg-surface/90 backdrop-blur-xl shadow-[0_-2px_12px_rgba(0,0,0,0.45)]" data-active-classes="text-primary-container font-semibold"><div class="flex justify-around items-center h-16 px-margin"><a class="flex flex-col items-center justify-center min-w-[44px] min-h-[44px] px-space-md py-space-xs text-on-surface-variant transition-colors hover:text-on-surface" data-path="inspection" href="#"><span class="material-symbols-outlined text-[24px]">check_circle</span><span class="font-label-sm text-label-sm tracking-wider uppercase mt-1">점검</span></a><a class="flex flex-col items-center justify-center min-w-[44px] min-h-[44px] px-space-md py-space-xs text-on-surface-variant transition-colors hover:text-on-surface" data-path="calibration" href="#"><span class="material-symbols-outlined text-[24px]">tune</span><span class="font-label-sm text-label-sm tracking-wider uppercase mt-1">보정</span></a><a class="flex flex-col items-center justify-center min-w-[44px] min-h-[44px] px-space-md py-space-xs text-on-surface-variant transition-colors hover:text-on-surface" data-path="units" href="#"><span class="material-symbols-outlined text-[24px]">settings_input_component</span><span class="font-label-sm text-label-sm tracking-wider uppercase mt-1">유닛</span></a></div></nav></body></html>

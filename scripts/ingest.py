@@ -20,7 +20,7 @@ from html.parser import HTMLParser
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
-SOURCES = ["index.html", "vision-review.html", "hardware-diagram.html", "PRD/PRD.md", "report/*.md"]
+SOURCES = ["index.html", "tech.html", "vision-review.html", "hardware-diagram.html", "PRD/PRD.md", "report/*.md"]
 
 EMBED_MODEL = "gemini-embedding-001"
 EMBED_DIM = 768
@@ -35,6 +35,7 @@ TOPIC_BY_SOURCE = {
     "PRD/PRD.md": "prd",
     "hardware-diagram.html": "hardware",
     "report/hardware_parts_design.md": "hardware",
+    "report/sbc_container_design.md": "hardware",
     "report/data_preprocessing_design.md": "data",
     "report/nuScenes_checklist.md": "data",
     "report/checklist.md": "data",
@@ -44,7 +45,7 @@ TOPIC_BY_SOURCE = {
     "report/model_training_validation_design.md": "model",
     "report/inference_engine_selection.md": "model",
 }
-# index.html은 섹션 제목으로 나눈다 (위에서부터 먼저 맞는 규칙)
+# index.html·tech.html은 섹션 제목으로 나눈다 (위에서부터 먼저 맞는 규칙)
 TOPIC_BY_INDEX_TITLE = [
     (r"경고 하드웨어|경고 유닛", "hardware"),
     (r"전처리", "data"),
@@ -188,7 +189,7 @@ def split_text(text):
 def topic_of(source, title):
     if source in TOPIC_BY_SOURCE:
         return TOPIC_BY_SOURCE[source]
-    if source == "index.html":
+    if source in ("index.html", "tech.html"):
         for pattern, topic in TOPIC_BY_INDEX_TITLE:
             if re.search(pattern, title):
                 return topic
